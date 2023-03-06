@@ -1,6 +1,7 @@
 const express = require("express");
 
 const userRouter = require("./routes/userRouter");
+const appErrorHandler = require("./controllers/errorController");
 
 const app = express();
 
@@ -15,4 +16,5 @@ app.use("*", (req, res, next) => {
   });
 });
 
+app.use(appErrorHandler);
 module.exports = app;

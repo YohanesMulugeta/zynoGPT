@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
+
 const User = require("../model/user");
 const AppError = require("../util/AppError");
+const catchAsync = require("../util/catchAsync");
 
 function signAndSend(user, statusCode, res) {
   const token = jwt.sign(
@@ -28,71 +30,46 @@ function signAndSend(user, statusCode, res) {
   });
 }
 
-exports.signUp = async function (req, res, next) {
-  try {
-    const { name, email, password, passwordConfirm, photo, plan } = req.body;
+exports.signUp = catchAsync(async function (req, res, next) {
+  const { name, email, password, passwordConfirm, photo, plan } = req.body;
 
-    const user = await User.create({
-      name,
-      email,
-      password,
-      passwordConfirm,
-      photo,
-      plan,
-    });
+  const user = await User.create({
+    name,
+    email,
+    password,
+    passwordConfirm,
+    photo,
+    plan,
+  });
 
-    user.password = undefined;
+  signAndSend(user, 201, res);
+});
 
-    signAndSend(user, 201, res);
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-      err,
-    });
-  }
-};
+exports.logIn = catchAsync(async function (req, res, next) {
+  const { email, password } = req.body;
 
-exports.logIn = async function (req, res, next) {
-  try {
-    const { email, password } = req.body;
+  const user = await User.findOne({ email }).select("+password");
 
-    const user = await User.findOne({ email }).select("+password");
+  const isPasswordCorrect = await user?.isCorrect(password);
+  if (!isPasswordCorrect)
+    return next(new AppError("Invalid email or password", 400));
 
-    const isPasswordCorrect = await user?.isCorrect(password);
-    if (!isPasswordCorrect)
-      throw new AppError("Invalid email or password", 400);
+  signAndSend(user, 200, res);
+});
 
-    signAndSend(user, 200, res);
-  } catch (err) {
-    console.log(err);
-    res.status(err.statusCode).json({
-      status: "fail",
-      message: err.message,
-      err,
-    });
-  }
-};
+exports.forgotPassword = catchAsync(async function (req, res, next) {
+  const { email } = req.body;
 
-exports.forgotPassword = async function (req, res, next) {
-  try {
-    const { email } = req.body;
+  const user = await User.findOne({ email });
 
-    const user = await User.findOne({ email });
+  if (!user)
+    return next(new AppError(`There is no user with ${email} address.`, 404));
 
-    if (!user)
-      throw new AppError(`There is no user with ${email} address.`, 404);
+  const str = await user.createForgotToken();
 
-    const str = await user.createForgotToken();
-
-    res.status(200).json({
-      status: "success",
-      data: { str },
-    });
-  } catch (err) {
-    console.log(err);
-    res
-      .status(err.statusCode)
-      .json({ status: "fail", message: err.message, err });
-  }
-};
+  await user.save({ validateBeforeSave: false });
+  res.status(200).json({
+    status: "success",
+    data: { str },
+  });
+});

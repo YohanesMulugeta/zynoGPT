@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     enum: ["free", "gold", "diamond"],
     default: "free",
   },
+  resetToken: String,
 });
 
 userSchema.pre("save", async function (next) {
@@ -58,8 +59,6 @@ userSchema.methods.createForgotToken = function () {
   const token = crypto.createHash("sha256").update(randStr).digest("hex");
 
   this.resetToken = token;
-
-  console.log(this.resetToken);
 
   return randStr;
 };
