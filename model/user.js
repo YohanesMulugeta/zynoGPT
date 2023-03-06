@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "User must have a name"],
     min: [3, "User name must have a minimum length of 3 characters"],
   },
-  emai: {
+  email: {
     type: String,
     required: [true, "User must have an email"],
   },
@@ -19,11 +19,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Users must confirm their password."],
     validate: {
-      validator: (value) => value === this.password,
+      validator: function (value) {
+        return value === this.password;
+      },
       message: "passwordConfirm must be the same as password",
     },
   },
   photo: String,
+  plan: {
+    type: String,
+    enum: ["free", "gold", "diamond"],
+    default: "free",
+  },
 });
 
 const User = mongoose.model("User", userSchema);
