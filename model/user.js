@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "User must have a password"],
-    min: [8, "User password must be greater than or equal to 8."],
+    min: [8, "User password length must be greater than or equal to 8."],
+    select: false,
   },
   passwordConfirm: {
     type: String,
@@ -50,21 +51,19 @@ userSchema.methods.isCorrect = async function (candidatePass) {
   return await bcrypt.compare(candidatePass, this.password);
 };
 
-const yohanes = {
-  name: "yohanes",
-  email: "aDMin@example.com",
-  password: "lalanewzare",
-  passwordConfirm: "lalanewzare",
-};
+// const yohanes = {
+//   name: "yohanes",
+//   email: "ain@example.com",
+//   password: "lalanewzare",
+//   passwordConfirm: "lalanewzare",
+// };
 
 const User = mongoose.model("User", userSchema);
 
-(async () => {
-  const user = await User.findById("6405b3eed8e2f3cd7f83a2b9");
+// (async () => {
+//   console.log(await User.findOne({ name: "yohanes" }));
 
-  console.log(await user.isCorrect("lalanewzare"));
-
-  console.log("success");
-})();
+//   console.log("success");
+// })();
 
 module.exports = User;
