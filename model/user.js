@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -49,6 +50,18 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.isCorrect = async function (candidatePass) {
   return await bcrypt.compare(candidatePass, this.password);
+};
+
+userSchema.methods.createForgotToken = function () {
+  const randStr = crypto.randomBytes(20).toString("hex");
+
+  const token = crypto.createHash("sha256").update(randStr).digest("hex");
+
+  this.resetToken = token;
+
+  console.log(this.resetToken);
+
+  return randStr;
 };
 
 // const yohanes = {

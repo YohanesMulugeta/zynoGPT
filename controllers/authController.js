@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/user");
+const AppError = require("../util/AppError");
 
 function signAndSend(user, statusCode, res) {
   const token = jwt.sign(
@@ -59,15 +60,39 @@ exports.logIn = async function (req, res, next) {
     const user = await User.findOne({ email }).select("+password");
 
     const isPasswordCorrect = await user?.isCorrect(password);
-    if (!isPasswordCorrect) throw new Error("Invalid email or password");
+    if (!isPasswordCorrect)
+      throw new AppError("Invalid email or password", 400);
 
     signAndSend(user, 200, res);
   } catch (err) {
     console.log(err);
-    res.status(400).json({
+    res.status(err.statusCode).json({
       status: "fail",
       message: err.message,
       err,
     });
+  }
+};
+
+exports.forgotPassword = async function (req, res, next) {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user)
+      throw new AppError(`There is no user with ${email} address.`, 404);
+
+    const str = await user.createForgotToken();
+
+    res.status(200).json({
+      status: "success",
+      data: { str },
+    });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(err.statusCode)
+      .json({ status: "fail", message: err.message, err });
   }
 };
