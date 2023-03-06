@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -9,6 +10,8 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "User must have an email"],
+    unique: true,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -33,6 +36,29 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.pre("save", async function (next) {
+  this.passwordConfirm = undefined;
+
+  !this.isModified("password") && next();
+
+  this.password = await bcrypt.hash(this.password, 12);
+
+  next();
+});
+
+const yohanes = {
+  name: "yohanes",
+  email: "aDMin@example.com",
+  password: "lalanewzare",
+  passwordConfirm: "lalanewzare",
+};
+
 const User = mongoose.model("User", userSchema);
+
+(async () => {
+  await User.create(yohanes);
+
+  console.log("success");
+})();
 
 module.exports = User;
