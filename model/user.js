@@ -46,6 +46,10 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+userSchema.methods.isCorrect = async function (candidatePass) {
+  return await bcrypt.compare(candidatePass, this.password);
+};
+
 const yohanes = {
   name: "yohanes",
   email: "aDMin@example.com",
@@ -56,7 +60,9 @@ const yohanes = {
 const User = mongoose.model("User", userSchema);
 
 (async () => {
-  await User.create(yohanes);
+  const user = await User.findById("6405b3eed8e2f3cd7f83a2b9");
+
+  console.log(await user.isCorrect("lalanewzare"));
 
   console.log("success");
 })();
