@@ -51,3 +51,23 @@ exports.signUp = async function (req, res, next) {
     });
   }
 };
+
+exports.logIn = async function (req, res, next) {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).select("+password");
+
+    const isPasswordCorrect = await user?.isCorrect(password);
+    if (!isPasswordCorrect) throw new Error("Invalid email or password");
+
+    signAndSend(user, 200, res);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+      err,
+    });
+  }
+};
