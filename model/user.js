@@ -45,6 +45,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// ---------------------- MIDDLWARES
+
 // encryption of password and setting reset token and password confirm to undefined
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
@@ -65,6 +67,7 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+// --------------------------- METHODS
 userSchema.methods.isCorrect = async function (candidatePass) {
   return await bcrypt.compare(candidatePass, this.password);
 };
@@ -85,19 +88,6 @@ userSchema.methods.isPassChangedAfter = function (date) {
   return this.passwordChangedAt / 1000 > date;
 };
 
-// const yohanes = {
-//   name: "yohanes",
-//   email: "ain@example.com",
-//   password: "lalanewzare",
-//   passwordConfirm: "lalanewzare",
-// };
-
 const User = mongoose.model("User", userSchema);
-
-// (async () => {
-//   console.log(await User.findOne({ name: "yohanes" }));
-
-//   console.log("success");
-// })();
 
 module.exports = User;

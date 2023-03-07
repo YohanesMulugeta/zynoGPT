@@ -19,4 +19,5 @@ app.use("*", (req, res, next) => {
 });
 
 app.use(appErrorHandler);
+
 module.exports = app;
