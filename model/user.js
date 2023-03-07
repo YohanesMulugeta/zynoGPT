@@ -38,6 +38,11 @@ const userSchema = new mongoose.Schema({
   },
   resetToken: String,
   passwordChangedAt: Date,
+  role: {
+    type: String,
+    enum: ["user", "admin", "dev"],
+    default: "user",
+  },
 });
 
 // encryption of password and setting reset token and password confirm to undefined

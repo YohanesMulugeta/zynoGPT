@@ -34,7 +34,7 @@ function signAndSend(user, statusCode, res) {
 }
 
 exports.signUp = catchAsync(async function (req, res, next) {
-  const { name, email, password, passwordConfirm, photo, plan } = req.body;
+  const { name, email, role, password, passwordConfirm, photo } = req.body;
 
   const user = await User.create({
     name,
@@ -42,7 +42,7 @@ exports.signUp = catchAsync(async function (req, res, next) {
     password,
     passwordConfirm,
     photo,
-    plan,
+    role,
   });
 
   signAndSend(user, 201, res);
@@ -113,6 +113,17 @@ exports.protect = catchAsync(async function (req, res, next) {
   next();
 });
 
+exports.strictTo = function (...role) {
+  return catchAsync(async function (req, res, next) {
+    const { user } = req;
+
+    if (!role.includes(user.role))
+      return next(new AppError("You are not allowed for this action.", 403));
+
+    next();
+  });
+};
+
 exports.updatePassword = catchAsync(async function (req, res, next) {
   const { currentPassword, password, passwordConfirm } = req.body;
   const { user } = req;
@@ -138,4 +149,18 @@ exports.updatePassword = catchAsync(async function (req, res, next) {
   await user.save();
 
   signAndSend(user, 201, res);
+});
+
+exports.getMe = catchAsync(async function (req, res, next) {
+  const { user } = req;
+
+  user.password = undefined;
+  user.passwordChangedAt = undefined;
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user,
+    },
+  });
 });

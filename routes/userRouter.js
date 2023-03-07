@@ -12,4 +12,5 @@ router.route("/forgotpassword").post(authController.forgotPassword);
 router.use(authController.protect);
 
 router.route("/updatepassword").patch(authController.updatePassword);
+router.route("/me").get(authController.getMe);
 module.exports = router;
