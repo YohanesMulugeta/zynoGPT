@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
     default: "free",
   },
   resetToken: String,
+  passwordChangedAt: Date,
 });
 
 userSchema.pre("save", async function (next) {
@@ -61,6 +62,12 @@ userSchema.methods.createForgotToken = function () {
   this.resetToken = token;
 
   return randStr;
+};
+
+userSchema.methods.isPassChangedAfter = function (date) {
+  if (!this.passwordChangedAt) return false;
+
+  return this.passwordChangedAt > date;
 };
 
 // const yohanes = {

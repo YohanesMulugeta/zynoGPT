@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
 
 const User = require("../model/user");
 const AppError = require("../util/AppError");
@@ -14,12 +15,14 @@ function signAndSend(user, statusCode, res) {
   );
 
   const cookieOpt = {
-    expires: Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000,
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+    ),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
   };
 
-  res.cookie("jwt", cookieOpt);
+  res.cookie("jwt", token, cookieOpt);
 
   user.password = undefined;
 
@@ -48,6 +51,9 @@ exports.signUp = catchAsync(async function (req, res, next) {
 exports.logIn = catchAsync(async function (req, res, next) {
   const { email, password } = req.body;
 
+  if (!email || !password)
+    return next(new AppError("Both email and password are required.", 400));
+
   const user = await User.findOne({ email }).select("+password");
 
   const isPasswordCorrect = await user?.isCorrect(password);
@@ -59,6 +65,8 @@ exports.logIn = catchAsync(async function (req, res, next) {
 
 exports.forgotPassword = catchAsync(async function (req, res, next) {
   const { email } = req.body;
+
+  if (!email) return next(new AppError("Email is required", 400));
 
   const user = await User.findOne({ email });
 
@@ -72,4 +80,39 @@ exports.forgotPassword = catchAsync(async function (req, res, next) {
     status: "success",
     data: { str },
   });
+});
+
+exports.protect = catchAsync(async function (req, res, next) {
+  const { authorization } = req.headers;
+  const token =
+    (authorization?.startsWith("Bearer") && authorization.split(" ")[1]) ||
+    req.cookies.jwt;
+
+  if (!token)
+    return next(
+      new AppError("You are not loged in. Please login and try again.", 401)
+    );
+
+  const { id, iat } = await promisify(jwt.verify)(
+    token,
+    process.env.JWT_SECRET
+  );
+
+  const user = await User.findById(id);
+
+  if (!user.isPassChangedAfter(iat))
+    return next(
+      new AppError(
+        "You have changed password recently. Please login again to get access.",
+        403
+      )
+    );
+
+  req.user = user;
+
+  next();
+});
+
+exports.updatePassword = catchAsync(async function (req, res, next) {
+  res.end();
 });
