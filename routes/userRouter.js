@@ -19,6 +19,7 @@ router.route("/me").get(authController.getMe);
 router.use(authController.strictTo("admin", "dev"));
 
 // Admin
+router.route("/").get(userController.getAllUsers);
 router
   .route("/:id")
   .get(userController.getUser)
