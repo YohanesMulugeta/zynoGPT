@@ -36,8 +36,8 @@ const userSchema = new mongoose.Schema({
     enum: ["free", "gold", "diamond"],
     default: "free",
   },
-  resetToken: String,
-  resetTokenExpiry: Date,
+  resetToken: { type: String, select: false },
+  resetTokenExpiry: { type: Date, select: false },
   passwordChangedAt: Date,
   role: {
     type: String,
@@ -54,6 +54,7 @@ userSchema.pre("save", async function (next) {
 
   this.passwordConfirm = undefined;
   this.resetToken = undefined;
+  this.resetTokenExpiry = undefined;
 
   this.password = await bcrypt.hash(this.password, 12);
 

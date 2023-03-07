@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const crypto = require("crypto");
 
 const User = require("../model/user");
 const AppError = require("../util/AppError");
@@ -42,6 +43,8 @@ function signAndSend(user, statusCode, res) {
   });
 }
 
+// -------------------------------- SIGNUP
+
 exports.signUp = catchAsync(async function (req, res, next) {
   const { name, email, role, password, passwordConfirm, photo } = req.body;
 
@@ -56,6 +59,8 @@ exports.signUp = catchAsync(async function (req, res, next) {
 
   signAndSend(user, 201, res);
 });
+
+// ------------------------------- LOGIN
 
 exports.logIn = catchAsync(async function (req, res, next) {
   const { email, password } = req.body;
@@ -94,10 +99,48 @@ exports.forgotPassword = catchAsync(async function (req, res, next) {
 
   res.status(200).json({
     status: "success",
-    data: { token },
+    message: `Password Reset link is sent to your email address: ${user.email}`,
   });
 });
 
+// ----------------------------- RESET PASSWORD
+exports.resetPassword = catchAsync(async function (req, res, next) {
+  const { token } = req.params;
+  const { password, passwordConfirm } = req.body;
+
+  const encrypted = crypto.createHash("sha256").update(token).digest("hex");
+  const user = await User.findOne({ resetToken: encrypted }).select(
+    "+resetTokenExpiry"
+  );
+
+  if (!user)
+    return next(new AppError("There is no user with this reset link.", 400));
+
+  if (Date.now() > user.resetTokenExpiry)
+    return next(
+      new AppError(
+        "Your reset link is expired. Please request another link and try again.",
+        400
+      )
+    );
+
+  if (!password || !passwordConfirm)
+    return next(
+      new AppError(
+        "Please provide both password and passwordConfirm fields",
+        400
+      )
+    );
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+
+  const updatedUser = await user.save();
+
+  signAndSend(updatedUser, 200, res);
+});
+
+// ------------------------ PROTECT
 exports.protect = catchAsync(async function (req, res, next) {
   const { authorization } = req.headers;
   const token =
@@ -129,6 +172,8 @@ exports.protect = catchAsync(async function (req, res, next) {
   next();
 });
 
+// ------------------------------- STRICT TO
+
 exports.strictTo = function (...role) {
   return catchAsync(async function (req, res, next) {
     const { user } = req;
@@ -139,6 +184,8 @@ exports.strictTo = function (...role) {
     next();
   });
 };
+
+// -------------------------------------- UPDATE PASSWORD
 
 exports.updatePassword = catchAsync(async function (req, res, next) {
   const { currentPassword, password, passwordConfirm } = req.body;
@@ -167,6 +214,8 @@ exports.updatePassword = catchAsync(async function (req, res, next) {
   signAndSend(user, 201, res);
 });
 
+// --------------------------------- GET ME
+
 exports.getMe = catchAsync(async function (req, res, next) {
   const { user } = req;
 
@@ -180,6 +229,8 @@ exports.getMe = catchAsync(async function (req, res, next) {
     },
   });
 });
+
+// ------------------------------- UPDATE ME
 
 exports.updateMe = catchAsync(async function (req, res, next) {
   const { user } = req;
