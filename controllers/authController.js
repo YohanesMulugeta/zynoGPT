@@ -4,6 +4,7 @@ const { promisify } = require("util");
 const User = require("../model/user");
 const AppError = require("../util/AppError");
 const catchAsync = require("../util/catchAsync");
+const Mail = require("../util/mail");
 
 function filterObj(obj, ...toBeFiltered) {
   toBeFiltered.forEach((field) => {
@@ -71,6 +72,7 @@ exports.logIn = catchAsync(async function (req, res, next) {
   signAndSend(user, 200, res);
 });
 
+// ------------------------- FROTGOT PASSWORD
 exports.forgotPassword = catchAsync(async function (req, res, next) {
   const { email } = req.body;
 
@@ -81,12 +83,18 @@ exports.forgotPassword = catchAsync(async function (req, res, next) {
   if (!user)
     return next(new AppError(`There is no user with ${email} address.`, 404));
 
-  const str = await user.createForgotToken();
+  const token = await user.createForgotToken();
 
   await user.save({ validateBeforeSave: false });
+
+  const url = `Your password reset link(Valid for ${process.env.RESET_EXPIRY} minutes). please use the following link to enter new password. And if you dont request for this, ignore this message.
+  Link: ${req.protocol}://${req.hostname}/${token}`;
+
+  await new Mail(user, url).sendResetPasswordLInk();
+
   res.status(200).json({
     status: "success",
-    data: { str },
+    data: { token },
   });
 });
 

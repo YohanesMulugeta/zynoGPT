@@ -34,14 +34,13 @@ class Email {
     return nodemailer.createTransport(transpoerterOpt);
   }
 
-  async send() {
+  async send(subject) {
     try {
       await this.createTransport().sendMail({
         from: this.from,
         to: this.to,
-        subject: `Welcome ${this.firstName}`,
-        text: `From <${this.from}>`,
-        headers: { From: this.from },
+        subject,
+        text: this.url,
       });
     } catch (err) {
       console.log(err);
@@ -49,7 +48,13 @@ class Email {
   }
 
   async sendWelcome() {
-    await this.send();
+    await this.send(`Welcome ${this.firstName}`);
+  }
+
+  async sendResetPasswordLInk() {
+    await this.send(
+      `Your Password Reset Link(Valid for ${process.env.RESET_EXPIRY} minutes).`
+    );
   }
 }
 

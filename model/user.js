@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
     default: "free",
   },
   resetToken: String,
+  resetTokenExpiry: Date,
   passwordChangedAt: Date,
   role: {
     type: String,
@@ -78,6 +79,7 @@ userSchema.methods.createForgotToken = function () {
   const token = crypto.createHash("sha256").update(randStr).digest("hex");
 
   this.resetToken = token;
+  this.resetTokenExpiry = new Date(Date.now() + 10 * 60 * 1000);
 
   return randStr;
 };
