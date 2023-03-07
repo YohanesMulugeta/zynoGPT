@@ -12,3 +12,19 @@ exports.deleteUser = catchAsync(async function (req, res, next) {
     message: "user deleted successfully",
   });
 });
+
+exports.getUser = catchAsync(async function (req, res, next) {
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+
+  if (!user)
+    return next(
+      new AppError("No user with this id. please provide valid id.", 400)
+    );
+
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});

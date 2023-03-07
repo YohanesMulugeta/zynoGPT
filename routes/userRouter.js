@@ -17,5 +17,8 @@ router.route("/me").get(authController.getMe);
 router.use(authController.strictTo("admin", "dev"));
 
 // Admin
-router.route("/:id").delete(userController.deleteUser);
+router
+  .route("/:id")
+  .get(userController.getUser)
+  .delete(userController.deleteUser);
 module.exports = router;
