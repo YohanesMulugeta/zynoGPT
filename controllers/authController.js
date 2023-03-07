@@ -5,6 +5,14 @@ const User = require("../model/user");
 const AppError = require("../util/AppError");
 const catchAsync = require("../util/catchAsync");
 
+function filterObj(obj, ...toBeFiltered) {
+  toBeFiltered.forEach((field) => {
+    delete obj[field];
+  });
+
+  return { ...obj };
+}
+
 function signAndSend(user, statusCode, res) {
   const token = jwt.sign(
     { id: user._id, iat: Date.now() / 1000 + 10 },
@@ -161,6 +169,44 @@ exports.getMe = catchAsync(async function (req, res, next) {
     status: "success",
     data: {
       user,
+    },
+  });
+});
+
+exports.updateMe = catchAsync(async function (req, res, next) {
+  const { user } = req;
+  const data = req.body;
+
+  if (data.password || data.passwordConfirm)
+    return next(
+      new AppError(
+        "This route is not for password update. Please use /updatePassword route.",
+        400
+      )
+    );
+
+  const filteredData = filterObj(
+    data,
+    "role",
+    "plan",
+    "passwordChangedAt",
+    "resetToken",
+    "resetTokenExpiry"
+  );
+
+  Object.keys(filteredData).forEach((key) => {
+    user[key] = filteredData[key];
+  });
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, filteredData, {
+    runValidators: true,
+    new: true,
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      updatedUser,
     },
   });
 });

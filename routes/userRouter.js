@@ -11,6 +11,8 @@ router.route("/forgotpassword").post(authController.forgotPassword);
 
 router.use(authController.protect);
 
+router.route("/updateMe").post(authController.updateMe);
+
 router.route("/updatepassword").patch(authController.updatePassword);
 router.route("/me").get(authController.getMe);
 

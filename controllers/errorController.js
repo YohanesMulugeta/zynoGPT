@@ -10,3 +10,4 @@ module.exports = function (err, req, res, next) {
 
 // operrors
 // 1) CastError
+// 2) ValidationError
