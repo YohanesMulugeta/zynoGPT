@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "User must have a name"],
-    min: [3, "User name must have a minimum length of 3 characters"],
+    minLength: [3, "User name must have a minimum length of 3 characters"],
   },
   email: {
     type: String,
@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "User must have a password"],
-    min: [8, "User password length must be greater than or equal to 8."],
+    minLength: [8, "User password length must be greater than or equal to 8."],
     select: false,
   },
   passwordConfirm: {
@@ -40,13 +40,23 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: Date,
 });
 
+// encryption of password and setting reset token and password confirm to undefined
 userSchema.pre("save", async function (next) {
-  this.passwordConfirm = undefined;
+  if (!this.isModified("password")) return next();
 
-  !this.isModified("password") && next();
+  this.passwordConfirm = undefined;
+  this.resetToken = undefined;
 
   this.password = await bcrypt.hash(this.password, 12);
 
+  next();
+});
+
+// set password changed at field
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now();
   next();
 });
 
@@ -67,7 +77,7 @@ userSchema.methods.createForgotToken = function () {
 userSchema.methods.isPassChangedAfter = function (date) {
   if (!this.passwordChangedAt) return false;
 
-  return this.passwordChangedAt > date;
+  return this.passwordChangedAt / 1000 > date;
 };
 
 // const yohanes = {

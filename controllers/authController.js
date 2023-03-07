@@ -7,7 +7,7 @@ const catchAsync = require("../util/catchAsync");
 
 function signAndSend(user, statusCode, res) {
   const token = jwt.sign(
-    { id: user._id, iat: Date.now() / 1000 - 30 },
+    { id: user._id, iat: Date.now() / 1000 + 10 },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES,
@@ -98,9 +98,9 @@ exports.protect = catchAsync(async function (req, res, next) {
     process.env.JWT_SECRET
   );
 
-  const user = await User.findById(id);
+  const user = await User.findById(id).select("+password");
 
-  if (!user.isPassChangedAfter(iat))
+  if (user.isPassChangedAfter(iat))
     return next(
       new AppError(
         "You have changed password recently. Please login again to get access.",
@@ -114,5 +114,28 @@ exports.protect = catchAsync(async function (req, res, next) {
 });
 
 exports.updatePassword = catchAsync(async function (req, res, next) {
-  res.end();
+  const { currentPassword, password, passwordConfirm } = req.body;
+  const { user } = req;
+  if (!currentPassword || !password || !passwordConfirm)
+    return next(
+      new AppError(
+        "All fields are required. please provide currentPassword, password, and passwordConfirm.",
+        400
+      )
+    );
+
+  if (!(await user.isCorrect(currentPassword)))
+    return next(
+      new AppError(
+        "The password you entered is incorrect. Please provide the correct current password.",
+        400
+      )
+    );
+
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+
+  await user.save();
+
+  signAndSend(user, 201, res);
 });
