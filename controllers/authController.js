@@ -104,7 +104,7 @@ exports.protect = catchAsync(async function (req, res, next) {
     return next(
       new AppError(
         "You have changed password recently. Please login again to get access.",
-        403
+        401
       )
     );
 
@@ -118,7 +118,7 @@ exports.strictTo = function (...role) {
     const { user } = req;
 
     if (!role.includes(user.role))
-      return next(new AppError("You are not allowed for this action.", 403));
+      return next(new AppError("You are not allowed for this action.", 401));
 
     next();
   });
