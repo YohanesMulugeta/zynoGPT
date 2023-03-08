@@ -15,9 +15,9 @@ html(lang="en")
         // Bootstrap icons
         link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css")
         // Custom CSS
-        link(rel="stylesheet", href="./assets/css/stylesheet.css")
+        link(rel="stylesheet", href="/assets/css/stylesheet.css")
         // Responsive CSS
-        link(rel="stylesheet", href="./assets/css/responsive.css")
+        link(rel="stylesheet", href="/assets/css/responsive.css")
         title Zyno Ink
     body
         include _nav
@@ -36,7 +36,7 @@ html(lang="en")
                                     span#typed
                                 br
                     .col-lg-6.d-lg-flex.align-items-center.d-none
-                        img.img-fluid(src="/img/hero-image.png", alt=)
+                        img.img-fluid(src="/img/hero-image.png", alt='')
                 .scroll-down.text-center
                     a.fw-bold.fs-5(href="#main") Scroll down 👇
         main#main.main-content.py-6.bg-white.px-3.px-lg-0
@@ -62,7 +62,7 @@ html(lang="en")
                                 .col-lg-6.p-4.bg-lpurple
                                     .div
                                         h5.fw-bold.fs-4 Write your command/prompt/question here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
                                         input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
                                 .col-lg-6.bg-llpurple.p-4
@@ -90,9 +90,9 @@ html(lang="en")
                                 .col-lg-6.p-4
                                     .div
                                         h5.fw-bold.fs-4 Write your Essay Title here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         h5.fw-bold.fs-4.mt-4 Write a small description here.
-                                        textarea.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        textarea.form-control(type="text", name='', placeholder="Start typing in here...")
                                         input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
                                         input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
                                 .col-lg-6.bg-llpurple.p-4
@@ -120,9 +120,9 @@ html(lang="en")
                                 .col-lg-6.p-4
                                     .div
                                         h5.fw-bold.fs-4 Write your Assignment Title here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         h5.fw-bold.fs-4.mt-4 Write a small description here.
-                                        textarea.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        textarea.form-control(type="text", name='', placeholder="Start typing in here...")
                                         input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
                                         input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
                                 .col-lg-6.bg-llpurple.p-4
@@ -150,13 +150,13 @@ html(lang="en")
                                 .col-lg-6.p-4
                                     .div
                                         h5.fw-bold.fs-4 Write your Name here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         h5.fw-bold.fs-4.mt-4 Write your Desired Job Title here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         h5.fw-bold.fs-4.mt-4 Write your Skill set here.
-                                        input.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        input.form-control(type="text", name='', placeholder="Start typing in here...")
                                         h5.fw-bold.fs-4.mt-4 Write your a small description about yourself here.
-                                        textarea.form-control(type="text", name=, placeholder="Start typing in here...")
+                                        textarea.form-control(type="text", name='', placeholder="Start typing in here...")
                                         input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
                                         input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
                                 .col-lg-6.bg-llpurple.p-4
@@ -188,7 +188,7 @@ html(lang="en")
                 .row
                     .col-lg-4.mt-3.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/contract.png", width="80px", alt=)
+                            img.img-fluid(src="./img/contract.png", width="80px", alt="")
                             h3.fw-bold.mt-2 Essay Writing
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -198,7 +198,7 @@ html(lang="en")
                                     | Read More
                     .col-lg-4.mt-3.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/assignment.png", width="80px", alt=)
+                            img.img-fluid(src="./img/assignment.png", width="80px", alt='')
                             h3.fw-bold.mt-2 Assignment Writing
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -208,7 +208,7 @@ html(lang="en")
                                     | Read More
                     .col-lg-4.mt-3.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/letter.png", width="80px", alt=)
+                            img.img-fluid(src="./img/letter.png", width="80px", alt='')
                             h3.fw-bold.mt-2 Cover Letter Writing
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -218,7 +218,7 @@ html(lang="en")
                                     | Read More
                     .col-lg-4.mt-3.mt-lg-2.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/youtube.png", width="80px", alt=)
+                            img.img-fluid(src="./img/youtube.png", width="80px", alt='')
                             h3.fw-bold.mt-2 YT Video Script
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -228,7 +228,7 @@ html(lang="en")
                                     | Read More
                     .col-lg-4.mt-3.mt-lg-2.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/hashtag.png", width="80px", alt=)
+                            img.img-fluid(src="./img/hashtag.png", width="80px", alt='')
                             h3.fw-bold.mt-2 Hashtags Generator
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -238,7 +238,7 @@ html(lang="en")
                                     | Read More
                     .col-lg-4.mt-3.mt-lg-2.p-3
                         .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                            img.img-fluid(src="./img/startup.png", width="80px", alt=)
+                            img.img-fluid(src="./img/startup.png", width="80px", alt='')
                             h3.fw-bold.mt-2 Startup Ideas Generator
                             p
                                 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
@@ -254,7 +254,7 @@ html(lang="en")
             .container
                 .row
                     .col-lg-5.mt-4
-                        img.img-fluid(src="./img/hiw-image.png", alt=)
+                        img.img-fluid(src="./img/hiw-image.png", alt='')
                     .col-lg-7.mt-4.d-flex.align-items-center
                         .div
                             h2.fw-bold.display-5 How It Works?
@@ -379,21 +379,21 @@ html(lang="en")
             .container
                 h4.fw-bold.display-5 The Brands Who Trust Us ✅
                 marquee.mt-3(onmouseover="this.stop();", onmouseout="this.start();", scrollamount="7")
-                    img.img-fluid(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
-                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt=)
+                    img.img-fluid(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                    img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
         section.home-blogs.py-6.px-3.px-lg-0.bg-lpurple
             .container
                 h4.fw-bold.display-5 Latest Blog Posts
                 .row
                     .col-lg-4.mt-2.mt-lg-0.p-3
                         .each-blog.bg-white.rounded-3
-                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt=)
+                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
                             .div.p-4
                                 h2.fw-bold Blog post title 1
                                 p.opacity-75
@@ -403,7 +403,7 @@ html(lang="en")
                                     a.btn-outline-primary.btn.mt-2.fs-5.fw-bold(href="#") Continue Reading...
                     .col-lg-4.mt-2.mt-lg-0.p-3
                         .each-blog.bg-white.rounded-3
-                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt=)
+                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
                             .div.p-4
                                 h2.fw-bold Blog post title 1
                                 p.opacity-75
@@ -413,7 +413,7 @@ html(lang="en")
                                     a.btn-outline-primary.btn.mt-2.fs-5.fw-bold(href="#") Continue Reading...
                     .col-lg-4.mt-2.mt-lg-0.p-3
                         .each-blog.bg-white.rounded-3
-                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt=)
+                            img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
                             .div.p-4
                                 h2.fw-bold Blog post title 1
                                 p.opacity-75
@@ -436,73 +436,7 @@ html(lang="en")
                 a.btn-primary.btn.mt-3.mt-lg-2.mx-2.px-4.fs-4.fw-bold(href="#")
                     i.bi.bi-pencil-square
                     | REGISTER
-        footer.py-5.px-3.px-lg-0.bg-dpurple
-            .container
-                .row
-                    .col-lg-3.mt-4.mt-lg-0
-                        h5.text-white Useful links
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="about.html") About us
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="features.html") Features
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="blog.html") Blog
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="faqs.html") FAQs
-                    .col-lg-3.mt-4.mt-lg-0
-                        h5.text-white Hot Tools
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="essay-writing.html") Essay Writing
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="assignment-writing.html") Assignment Writing
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="cover-letter-writing.html") Cover Letter Writing
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="notes-writing.html") Notes Writing
-                    .col-lg-3.mt-4.mt-lg-0
-                        h5.text-white New Tools
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="startup-ideas-generator.html")
-                                | Startup Ideas
-                                | Generator
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="youtube-video-script-generator.html")
-                                | YT Video
-                                | Script
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="text-paraphraser.html") Text Paraphraser
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="hashtags-generator.html") Hashtags Generator
-                    .col-lg-3.mt-4.mt-lg-0
-                        h5.text-white Follow us on
-                        p.m-0.mt-2
-                            a.text-white.opacity-75.fs-5(href="#")
-                                i.bi.bi-facebook
-                            a.text-white.opacity-75.fs-5.ms-2(href="#")
-                                i.bi.bi-instagram
-                            a.text-white.opacity-75.fs-5.ms-2(href="#")
-                                i.bi.bi-linkedin
-                            a.text-white.opacity-75.fs-5.ms-2(href="#")
-                                i.bi.bi-youtube
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="cookie.html") Cooikie Policy
-                        p.m-0.mt-2
-                            a.text-white.opacity-75(href="terms.html") Terms &amp; Conditions
-                        p.m-0.mt-2
-                            a.opacity-75.text-white(href="https://www.canva.com") Canva
-                            a.opacity-75.text-white(href="https://www.pexels.com") Pexels
-        .below-footer.py-2.bg-ddpurple
-            .container
-                .row
-                    .col-lg-5.text-center.text-lg-start
-                        p.m-0.text-white A SaaS by 
-                            a.text-white.fw-bold(href="https://www.unikbrushes.com") UnikBrushes
-                            | .
-                    .col-lg-7.text-center.text-lg-end
-                        p.m-0.text-white
-                            | Copyright ©
-                            strong Zyno.Ink
-                            | 2023. All rights reserved.
+        include _footer
         script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", crossorigin="anonymous")
         // typed js
         script(src="./assets/js/typed.js")
