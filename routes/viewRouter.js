@@ -11,5 +11,6 @@ router.get("/features", viewController.features);
 router.get("/pricing", viewController.pricing);
 router.get("/about", viewController.about);
 router.get("/error", viewController.error);
+router.get("/profile", viewController.profile);
 
 module.exports = router;

@@ -28,3 +28,7 @@ exports.about = function (req, res, next) {
 exports.error = function (req, res, next) {
   res.render("error");
 };
+
+exports.profile = function (req, res, next) {
+  res.render("profile");
+};

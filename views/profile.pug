@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+    head
+        // Required meta tags
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        // CSS
+        link(rel="stylesheet", href="CSS/styles.css")
+        // Bootstrap CSS
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3", crossorigin="anonymous")
+        // Custom fonts
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;700&display=swap", rel="stylesheet")
+        // Bootstrap icons
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css")
+        // Custom CSS
+        link(rel="stylesheet", href="./assets/css/stylesheet.css")
+        // Responsive CSS
+        link(rel="stylesheet", href="./assets/css/responsive.css")
+        title Zyno Ink
+    body
+        include _nav
+        .scroll-top.opacity-0
+            a(href="#scroll-top")
+                i.bi.bi-arrow-up-circle-fill
+        .float-word-count.shadow.rounded-3.p-3
+            .div
+                | You have
+                strong 564
+                | words remaining of
+                strong 10000
+                | words
+        section#scroll-top.breadcrumb
+            .container
+                .col-lg-8.text-center.text-lg-start
+                    h2.fw-bold.display-5 Profile Settings
+                    hr
+                    h4.text-purple.fw-bold 👨‍💼 Need any changes in your profile? 👨‍💼
+                    p.opacity-75
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
+                        | nam
+                        | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+        section.profile-settings.py-6.px-2.px-lg-0.bg-white
+            .container
+                form
+                    .mb-3
+                        label.form-label(for="exampleInputEmail1") Full Name
+                        input.form-control(type="text", placeholder="Enter your full name here...")
+                    .mb-3
+                        label.form-label(for="exampleInputEmail1") Username
+                        input.form-control(type="text", placeholder="Username cannot be changed", disabled)
+                    .mb-3
+                        label.form-label(for="exampleInputEmail1") Email address
+                        input.form-control(type="email", placeholder="Enter your email address here...")
+                    .mb-3
+                        label.form-label(for="exampleInputPassword1") New Password
+                        input.form-control(type="password", placeholder="********")
+                    .mb-3
+                        label.form-label(for="exampleInputPassword1") Confirm Password
+                        input.form-control(type="password", placeholder="********")
+                    button.btn.btn-primary.fs-5.fw-bold.px-5(type="submit") SAVE
+        include _footer
