@@ -1,0 +1,404 @@
+extends base
+block content
+    .scroll-top.opacity-0
+        a(href="#scroll-top")
+            i.bi.bi-arrow-up-circle-fill
+    section#scroll-top.hero.position-relative
+        .container
+            .row
+                .col-lg-6.d-flex.align-items-center.justify-content-center.justify-content-lg-start
+                    .hero-content.text-center.text-lg-start
+                        h2.m-0.opacity-75.fs-3 Hi, I&apos;m Zyno and I&apos;m the
+                        h1.text-secondary-color.m-0.display-4 Best AI Writer For
+                        #typed-strings
+                            h1.display-4.fw-bold.text-purple
+                                span#typed
+                            br
+                .col-lg-6.d-lg-flex.align-items-center.d-none
+                    img.img-fluid(src="/img/hero-image.png", alt='')
+            .scroll-down.text-center
+                a.fw-bold.fs-5(href="#main") Scroll down 👇
+    main#main.main-content.py-6.bg-white.px-3.px-lg-0
+        .container
+            h2.fw-bold.display-5.text-center.text-lg-start Try *Zyno(dot)Ink* For FREE
+            h4.text-purple.fw-bold.text-center.text-lg-start
+                | 😃 No Credit Card
+                | Required 😃
+            p.opacity-75.text-center.text-lg-start
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                | Cupiditate vitae velit nam
+                | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+            section.mt-4.tabs-buttons
+                #nav-tab.nav.nav-tabs.mb-3(role="tablist")
+                    button#nav-home-tab.nav-link.fw-bold.active(data-bs-toggle="tab", data-bs-target="#nav-home", type="button", role="tab", aria-controls="nav-home", aria-selected="true") All In One (ChatGPT)
+                    button#nav-essay-tab.nav-link.fw-bold(data-bs-toggle="tab", data-bs-target="#nav-essay", type="button", role="tab", aria-controls="nav-essay", aria-selected="false") Essay Writing
+                    button#nav-assignment-tab.nav-link.fw-bold(data-bs-toggle="tab", data-bs-target="#nav-assignment", type="button", role="tab", aria-controls="nav-assignment", aria-selected="false") Assignment Writing
+                    button#nav-cover-tab.nav-link.fw-bold(data-bs-toggle="tab", data-bs-target="#nav-cover", type="button", role="tab", aria-controls="nav-cover", aria-selected="false") Cover Letter Writing
+            #nav-tabContent.tab-content.bg-lpurple
+                #nav-home.tab-pane.fade.active.show(role="tabpanel", aria-labelledby="nav-home-tab")
+                    form(action="POST")
+                        .row
+                            .col-lg-6.p-4.bg-lpurple
+                                .div
+                                    h5.fw-bold.fs-4 Write your command/prompt/question here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
+                                    input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
+                            .col-lg-6.bg-llpurple.p-4
+                                h5.fw-bold.fs-4 Output (Just copy paste and BOOM! 💥)
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur odio distinctio quisquam eaque
+                                    | nisi similique molestias numquam corrupti exercitationem nesciunt? Fugit nostrum tenetur dolorem! Nam,
+                                    | aliquam sunt rerum iusto reprehenderit id atque nihil reiciendis natus placeat facere dolore quia
+                                    | officiis iure? Eligendi eum consequatur rem dolorum vitae! Et quidem temporibus necessitatibus
+                                    | suscipit impedit architecto cum similique error ab obcaecati recusandae aspernatur iusto quasi
+                                    | praesentium eligendi odio, in fugit quis nemo nihil ullam harum odit perferendis! Neque ut ipsa
+                                    | dolores aliquam eveniet libero doloribus eos hic dignissimos minus, id magnam veniam officiis deserunt
+                                    | explicabo sapiente alias officia, ab fugiat quae. Voluptates quas inventore accusamus aliquid
+                                    | reprehenderit magni. Repellendus exercitationem autem illo reiciendis dolorum at perferendis ullam
+                                    | cupiditate aspernatur? Nam eos molestiae animi ut laudantium aliquam, minus corrupti architecto
+                                    | voluptas! Cupiditate maiores tempore aspernatur laboriosam quos suscipit nam at eaque non beatae
+                                    | numquam, dolore incidunt quis? Doloremque quia numquam, quo quod aperiam quae maxime magnam distinctio
+                                    | necessitatibus, recusandae dolor obcaecati, tempore officiis ea accusamus unde error? Amet placeat
+                                    | nihil distinctio dolore ducimus dignissimos aliquam, sapiente architecto aliquid deserunt fugit?
+                                    | Nesciunt, incidunt? Nihil porro quisquam sit optio alias est cumque a perferendis! Commodi fugiat
+                                    | recusandae dicta quos repellendus molestiae distinctio rerum eum consequuntur?
+                #nav-essay.tab-pane.fade(role="tabpanel", aria-labelledby="nav-essay-tab")
+                    form(action="POST")
+                        .row
+                            .col-lg-6.p-4
+                                .div
+                                    h5.fw-bold.fs-4 Write your Essay Title here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    h5.fw-bold.fs-4.mt-4 Write a small description here.
+                                    textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
+                                    input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
+                            .col-lg-6.bg-llpurple.p-4
+                                h5.fw-bold.fs-4 Output (Just copy paste and BOOM! 💥)
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur odio distinctio quisquam eaque
+                                    | nisi similique molestias numquam corrupti exercitationem nesciunt? Fugit nostrum tenetur dolorem! Nam,
+                                    | aliquam sunt rerum iusto reprehenderit id atque nihil reiciendis natus placeat facere dolore quia
+                                    | officiis iure? Eligendi eum consequatur rem dolorum vitae! Et quidem temporibus necessitatibus
+                                    | suscipit impedit architecto cum similique error ab obcaecati recusandae aspernatur iusto quasi
+                                    | praesentium eligendi odio, in fugit quis nemo nihil ullam harum odit perferendis! Neque ut ipsa
+                                    | dolores aliquam eveniet libero doloribus eos hic dignissimos minus, id magnam veniam officiis deserunt
+                                    | explicabo sapiente alias officia, ab fugiat quae. Voluptates quas inventore accusamus aliquid
+                                    | reprehenderit magni. Repellendus exercitationem autem illo reiciendis dolorum at perferendis ullam
+                                    | cupiditate aspernatur? Nam eos molestiae animi ut laudantium aliquam, minus corrupti architecto
+                                    | voluptas! Cupiditate maiores tempore aspernatur laboriosam quos suscipit nam at eaque non beatae
+                                    | numquam, dolore incidunt quis? Doloremque quia numquam, quo quod aperiam quae maxime magnam distinctio
+                                    | necessitatibus, recusandae dolor obcaecati, tempore officiis ea accusamus unde error? Amet placeat
+                                    | nihil distinctio dolore ducimus dignissimos aliquam, sapiente architecto aliquid deserunt fugit?
+                                    | Nesciunt, incidunt? Nihil porro quisquam sit optio alias est cumque a perferendis! Commodi fugiat
+                                    | recusandae dicta quos repellendus molestiae distinctio rerum eum consequuntur?
+                #nav-assignment.tab-pane.fade(role="tabpanel", aria-labelledby="nav-assignment-tab")
+                    form(action="POST")
+                        .row
+                            .col-lg-6.p-4
+                                .div
+                                    h5.fw-bold.fs-4 Write your Assignment Title here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    h5.fw-bold.fs-4.mt-4 Write a small description here.
+                                    textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
+                                    input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
+                            .col-lg-6.bg-llpurple.p-4
+                                h5.fw-bold.fs-4 Output (Just copy paste and BOOM! 💥)
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur odio distinctio quisquam eaque
+                                    | nisi similique molestias numquam corrupti exercitationem nesciunt? Fugit nostrum tenetur dolorem! Nam,
+                                    | aliquam sunt rerum iusto reprehenderit id atque nihil reiciendis natus placeat facere dolore quia
+                                    | officiis iure? Eligendi eum consequatur rem dolorum vitae! Et quidem temporibus necessitatibus
+                                    | suscipit impedit architecto cum similique error ab obcaecati recusandae aspernatur iusto quasi
+                                    | praesentium eligendi odio, in fugit quis nemo nihil ullam harum odit perferendis! Neque ut ipsa
+                                    | dolores aliquam eveniet libero doloribus eos hic dignissimos minus, id magnam veniam officiis deserunt
+                                    | explicabo sapiente alias officia, ab fugiat quae. Voluptates quas inventore accusamus aliquid
+                                    | reprehenderit magni. Repellendus exercitationem autem illo reiciendis dolorum at perferendis ullam
+                                    | cupiditate aspernatur? Nam eos molestiae animi ut laudantium aliquam, minus corrupti architecto
+                                    | voluptas! Cupiditate maiores tempore aspernatur laboriosam quos suscipit nam at eaque non beatae
+                                    | numquam, dolore incidunt quis? Doloremque quia numquam, quo quod aperiam quae maxime magnam distinctio
+                                    | necessitatibus, recusandae dolor obcaecati, tempore officiis ea accusamus unde error? Amet placeat
+                                    | nihil distinctio dolore ducimus dignissimos aliquam, sapiente architecto aliquid deserunt fugit?
+                                    | Nesciunt, incidunt? Nihil porro quisquam sit optio alias est cumque a perferendis! Commodi fugiat
+                                    | recusandae dicta quos repellendus molestiae distinctio rerum eum consequuntur?
+                #nav-cover.tab-pane.fade(role="tabpanel", aria-labelledby="nav-cover-tab")
+                    form(action="POST")
+                        .row
+                            .col-lg-6.p-4
+                                .div
+                                    h5.fw-bold.fs-4 Write your Name here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    h5.fw-bold.fs-4.mt-4 Write your Desired Job Title here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    h5.fw-bold.fs-4.mt-4 Write your Skill set here.
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    h5.fw-bold.fs-4.mt-4 Write your a small description about yourself here.
+                                    textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                                    input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit For FREE!")
+                                    input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
+                            .col-lg-6.bg-llpurple.p-4
+                                h5.fw-bold.fs-4 Output (Just copy paste and BOOM! 💥)
+                                p
+                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur odio distinctio quisquam eaque
+                                    | nisi similique molestias numquam corrupti exercitationem nesciunt? Fugit nostrum tenetur dolorem! Nam,
+                                    | aliquam sunt rerum iusto reprehenderit id atque nihil reiciendis natus placeat facere dolore quia
+                                    | officiis iure? Eligendi eum consequatur rem dolorum vitae! Et quidem temporibus necessitatibus
+                                    | suscipit impedit architecto cum similique error ab obcaecati recusandae aspernatur iusto quasi
+                                    | praesentium eligendi odio, in fugit quis nemo nihil ullam harum odit perferendis! Neque ut ipsa
+                                    | dolores aliquam eveniet libero doloribus eos hic dignissimos minus, id magnam veniam officiis deserunt
+                                    | explicabo sapiente alias officia, ab fugiat quae. Voluptates quas inventore accusamus aliquid
+                                    | reprehenderit magni. Repellendus exercitationem autem illo reiciendis dolorum at perferendis ullam
+                                    | cupiditate aspernatur? Nam eos molestiae animi ut laudantium aliquam, minus corrupti architecto
+                                    | voluptas! Cupiditate maiores tempore aspernatur laboriosam quos suscipit nam at eaque non beatae
+                                    | numquam, dolore incidunt quis? Doloremque quia numquam, quo quod aperiam quae maxime magnam distinctio
+                                    | necessitatibus, recusandae dolor obcaecati, tempore officiis ea accusamus unde error? Amet placeat
+                                    | nihil distinctio dolore ducimus dignissimos aliquam, sapiente architecto aliquid deserunt fugit?
+                                    | Nesciunt, incidunt? Nihil porro quisquam sit optio alias est cumque a perferendis! Commodi fugiat
+                                    | recusandae dicta quos repellendus molestiae distinctio rerum eum consequuntur?
+    section.features.py-6.bg-lpurple.px-3.px-lg-0
+        .container
+            h2.fw-bold.display-5 Features
+            h4.text-purple.fw-bold 🥳 Its as easy as ABC 🥳
+            p.opacity-75
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam
+                | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+            .row
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/contract.png", width="80px", alt="")
+                        h3.fw-bold.mt-2 Essay Writing
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="essay-writing.html")
+                                | Read More
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/assignment.png", width="80px", alt='')
+                        h3.fw-bold.mt-2 Assignment Writing
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="assignment-writing.html")
+                                | Read More
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/letter.png", width="80px", alt='')
+                        h3.fw-bold.mt-2 Cover Letter Writing
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="cover-letter-writing.html")
+                                | Read More
+                .col-lg-4.mt-3.mt-lg-2.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/youtube.png", width="80px", alt='')
+                        h3.fw-bold.mt-2 YT Video Script
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="youtube-video-script-generator.html")
+                                | Read More
+                .col-lg-4.mt-3.mt-lg-2.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/hashtag.png", width="80px", alt='')
+                        h3.fw-bold.mt-2 Hashtags Generator
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="hashtags-generator.html")
+                                | Read More
+                .col-lg-4.mt-3.mt-lg-2.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/startup.png", width="80px", alt='')
+                        h3.fw-bold.mt-2 Startup Ideas Generator
+                        p
+                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
+                            | nihil?
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="startup-ideas-generator.html")
+                                | Read More
+            .text-center.mt-5
+                h4.fw-bold.display-5 Want to check out all the features? 😄
+                a.btn-primary.btn.fs-4.fw-bold.px-5(href="features.html")
+                    | HERE YOU GOO!!
+    section.how-it-works.py-6.bg-white.px-3.px-lg-0
+        .container
+            .row
+                .col-lg-5.mt-4
+                    img.img-fluid(src="./img/hiw-image.png", alt='')
+                .col-lg-7.mt-4.d-flex.align-items-center
+                    .div
+                        h2.fw-bold.display-5 How It Works?
+                        h4.text-purple.fw-bold 🥳 No Rocket Science 🥳
+                        ul
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+                            li
+                                | 👉 Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse beatae obcaecati nam doloribus sequi
+                                | at,
+                                | iste non culpa.
+    section.faqs.py-6.bg-lpurple.px-3.px-lg-0
+        .container
+            .row
+                .col-lg-8
+                    h2.fw-bold.display-5 Frequently Asked Questions 🤔
+                    h4.text-purple.fw-bold 🥳 Even a 2yr old can understand 🥳
+                    p.opacity-75
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
+                        | nam
+                        | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+                    #accordionExample.accordion
+                        .accordion-item
+                            h2#headingOne.accordion-header
+                                button.accordion-button(type="button", data-bs-toggle="collapse", data-bs-target="#collapseOne", aria-expanded="true", aria-controls="collapseOne")
+                                    | Accordion Item #1
+                            #collapseOne.accordion-collapse.collapse.show(aria-labelledby="headingOne", data-bs-parent="#accordionExample")
+                                .accordion-body
+                                    strong This is the first item&apos;s accordion body.
+                                    | It is shown by default, until the collapse
+                                    | plugin adds the appropriate classes that we use to style each element. These classes control the
+                                    | overall
+                                    | appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                                    | custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go
+                                    | within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
+                        .accordion-item
+                            h2#headingTwo.accordion-header
+                                button.accordion-button.collapsed(type="button", data-bs-toggle="collapse", data-bs-target="#collapseTwo", aria-expanded="false", aria-controls="collapseTwo")
+                                    | Accordion Item #2
+                            #collapseTwo.accordion-collapse.collapse(aria-labelledby="headingTwo", data-bs-parent="#accordionExample")
+                                .accordion-body
+                                    strong This is the second item&apos;s accordion body.
+                                    | It is hidden by default, until the collapse
+                                    | plugin adds the appropriate classes that we use to style each element. These classes control the
+                                    | overall
+                                    | appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                                    | custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go
+                                    | within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
+                        .accordion-item
+                            h2#headingThree.accordion-header
+                                button.accordion-button.collapsed(type="button", data-bs-toggle="collapse", data-bs-target="#collapseThree", aria-expanded="false", aria-controls="collapseThree")
+                                    | Accordion Item #3
+                            #collapseThree.accordion-collapse.collapse(aria-labelledby="headingThree", data-bs-parent="#accordionExample")
+                                .accordion-body
+                                    strong This is the third item&apos;s accordion body.
+                                    | It is hidden by default, until the collapse
+                                    | plugin adds the appropriate classes that we use to style each element. These classes control the
+                                    | overall
+                                    | appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                                    | custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go
+                                    | within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
+                        .accordion-item
+                            h2#headingFour.accordion-header
+                                button.accordion-button.collapsed(type="button", data-bs-toggle="collapse", data-bs-target="#collapseFour", aria-expanded="false", aria-controls="collapseFour")
+                                    | Accordion Item #4
+                            #collapseFour.accordion-collapse.collapse(aria-labelledby="headingFour", data-bs-parent="#accordionExample")
+                                .accordion-body
+                                    strong This is the third item&apos;s accordion body.
+                                    | It is hidden by default, until the collapse
+                                    | plugin adds the appropriate classes that we use to style each element. These classes control the
+                                    | overall
+                                    | appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                                    | custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go
+                                    | within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
+                        .accordion-item
+                            h2#headingFive.accordion-header
+                                button.accordion-button.collapsed(type="button", data-bs-toggle="collapse", data-bs-target="#collapseFive", aria-expanded="false", aria-controls="collapseFive")
+                                    | Accordion Item #5
+                            #collapseFive.accordion-collapse.collapse(aria-labelledby="headingFive", data-bs-parent="#accordionExample")
+                                .accordion-body
+                                    strong This is the third item&apos;s accordion body.
+                                    | It is hidden by default, until the collapse
+                                    | plugin adds the appropriate classes that we use to style each element. These classes control the
+                                    | overall
+                                    | appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with
+                                    | custom CSS or overriding our default variables. It&apos;s also worth noting that just about any HTML can go
+                                    | within the
+                                    code .accordion-body
+                                    | , though the transition does limit overflow.
+                .col-lg-4.bg-faq
+            .text-center.mt-5
+                h4.fw-bold.display-5 Want to see more FAQs? 🤔
+                a.btn-primary.btn.fs-4.fw-bold.px-5(href="faqs.html")
+                    | HERE YOU GOO!!
+    section.partners.py-6.px-3.px-lg-0.bg-white
+        .container
+            h4.fw-bold.display-5 The Brands Who Trust Us ✅
+            marquee.mt-3(onmouseover="this.stop();", onmouseout="this.start();", scrollamount="7")
+                img.img-fluid(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+                img.img-fluid.ms-4(src="./img/Freepik.png", width="150px", alt='')
+    section.home-blogs.py-6.px-3.px-lg-0.bg-lpurple
+        .container
+            h4.fw-bold.display-5 Latest Blog Posts
+            .row
+                .col-lg-4.mt-2.mt-lg-0.p-3
+                    .each-blog.bg-white.rounded-3
+                        img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
+                        .div.p-4
+                            h2.fw-bold Blog post title 1
+                            p.opacity-75
+                                | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque illo non
+                                | debitis laboriosam porro nobis, sequi doloribus qui?
+                            .d-grid
+                                a.btn-outline-primary.btn.mt-2.fs-5.fw-bold(href="#") Continue Reading...
+                .col-lg-4.mt-2.mt-lg-0.p-3
+                    .each-blog.bg-white.rounded-3
+                        img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
+                        .div.p-4
+                            h2.fw-bold Blog post title 1
+                            p.opacity-75
+                                | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque illo non
+                                | debitis laboriosam porro nobis, sequi doloribus qui?
+                            .d-grid
+                                a.btn-outline-primary.btn.mt-2.fs-5.fw-bold(href="#") Continue Reading...
+                .col-lg-4.mt-2.mt-lg-0.p-3
+                    .each-blog.bg-white.rounded-3
+                        img.img-fluid.rounded-3(src="./img/blog-image.jpg", alt='')
+                        .div.p-4
+                            h2.fw-bold Blog post title 1
+                            p.opacity-75
+                                | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque illo non
+                                | debitis laboriosam porro nobis, sequi doloribus qui?
+                            .d-grid
+                                a.btn-outline-primary.btn.mt-2.fs-5.fw-bold(href="#") Continue Reading...
+            .text-center
+                a.btn-primary.btn.mt-2.mx-2.px-5.fs-4.fw-bold(href="blog.html") VIEW ALL BLOGS
