@@ -12,3 +12,7 @@ exports.home = function (req, res, next) {
 exports.signup = function (req, res, next) {
   res.render("signup");
 };
+
+exports.features = function (req, res, next) {
+  res.render("features");
+};

@@ -1,0 +1,88 @@
+mixin feature(img,alt,text,href,header)
+    .col-lg-4.mt-3.p-3
+        .div.py-3.px-4.bg-white.rounded-3.border.border-1
+            img.img-fluid(src=`/img/${img}.png`, width="80px", alt=`${alt}`)
+            h3.fw-bold.mt-2= header 
+            p= text
+            .d-grid
+                a.btn-primary.btn.fs-5.fw-bold.px-4(href=`/${href}`)
+                    | Read More
+
+doctype html
+html(lang="en")
+    head
+        // Required meta tags
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        // CSS
+        link(rel="stylesheet", href="CSS/styles.css")
+        // Bootstrap CSS
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3", crossorigin="anonymous")
+        // Custom fonts
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;700&display=swap", rel="stylesheet")
+        // Bootstrap icons
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css")
+        // Custom CSS
+        link(rel="stylesheet", href="./assets/css/stylesheet.css")
+        // Responsive CSS
+        link(rel="stylesheet", href="./assets/css/responsive.css")
+        title Zyno Ink
+    body
+        include _nav
+        .scroll-top.opacity-0
+            a(href="#scroll-top")
+                i.bi.bi-arrow-up-circle-fill
+        section#scroll-top.breadcrumb
+            .container
+                .col-lg-8.text-center.text-lg-start
+                    h2.fw-bold.display-5 All Features
+                    hr
+                    h4.text-purple.fw-bold 👍 We are one STEP Ahead 👍
+                    p.opacity-75
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
+                        | nam
+                        | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+        section.features.py-6.bg-white.px-3.px-lg-0
+            .container
+                h2.fw-bold.display-5 Features
+                h4.text-purple.fw-bold 🥳 Its as easy as ABC 🥳
+                p.opacity-75
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam
+                    | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+                .row
+
+                    +feature('contract','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','essay-writing','Essay Writing')
+                    +feature('assignment','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','assignment-writing','Assignment Writing')
+                    +feature('letter','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','cover-letter-writing','Cover Letter Writing')
+                    +feature('youtube','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','youtube-video-script-generator','YT Video Script')
+                    +feature('hashtag','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','hashtags-enerator','Hashtags Generator')
+                    +feature('startup','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','startup-ideas-generator','Startup Ideas Generator')
+                    +feature('leaveletter','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','leave-letter-writing','Leave Letter Writing')
+                    +feature('paraphrase','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','text-paraphrase','Text Paraphraser')
+                    +feature('brand-identity','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','brand-name-generator','Brand Name Generator')
+                    +feature('youtube-des','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','youtube-video-description-generator','YT Video Description')
+                    +feature('note','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','text-expander','Text Expander')
+                    +feature('social-media','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','social-media-captions','Social Media Captions')
+                    
+        section.cta.py-6.px-3.px-lg-0.bg-lpurple
+            .container.text-center
+                h2.fw-bold.display-5 Wanna Get Started As Soon As Possible?
+                p.opacity-75.col-lg-8.mx-auto
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+                    | vitae
+                    | velit nam
+                    | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+                a.btn-outline-primary.btn.mt-2.mx-2.px-4.fs-4.fw-bold(href="#")
+                    i.bi.bi-box-arrow-in-right
+                    | LOGIN
+                a.btn-primary.btn.mt-2.mx-2.px-4.fs-4.fw-bold(href="#")
+                    i.bi.bi-pencil-square
+                    | REGISTER
+        include _footer
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", crossorigin="anonymous")
+        // typed js
+        script(src="./assets/js/typed.js")
+        // Custom JS
+        script(src="./assets/js/script.js")
