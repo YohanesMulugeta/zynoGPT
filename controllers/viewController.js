@@ -32,3 +32,7 @@ exports.error = function (req, res, next) {
 exports.profile = function (req, res, next) {
   res.render("profile");
 };
+
+exports.feature = function (req, res, next) {
+  res.render("feature");
+};
