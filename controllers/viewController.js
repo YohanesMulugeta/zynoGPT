@@ -1,38 +1,42 @@
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/AppError");
 
-exports.login = function (req, res, next) {
-  res.render("login");
+exports.home = function (req, res, next) {
+  res.render("home", { title: "Home" });
 };
 
-exports.home = function (req, res, next) {
-  res.render("home");
+exports.login = function (req, res, next) {
+  res.render("login", { title: "Login" });
 };
 
 exports.signup = function (req, res, next) {
-  res.render("signup");
+  res.render("signup", { title: "Register" });
 };
 
 exports.features = function (req, res, next) {
-  res.render("features");
+  res.render("features", { title: "Features" });
 };
 
 exports.pricing = function (req, res, next) {
-  res.render("pricing");
+  res.render("pricing", { title: "Pricing" });
 };
 
 exports.about = function (req, res, next) {
-  res.render("about");
+  res.render("about", { title: "About" });
 };
 
 exports.error = function (req, res, next) {
-  res.render("error");
+  res.render("error", { title: "Error" });
 };
 
 exports.profile = function (req, res, next) {
-  res.render("profile");
+  res.render("profile", { title: "Account" });
 };
 
 exports.feature = function (req, res, next) {
-  res.render("feature");
+  res.render("feature", { title: "Feature" });
+};
+
+exports.faqs = function (req, res, next) {
+  res.render("faqs", { title: "Faqs" });
 };
