@@ -1,0 +1,321 @@
+:root {
+  --dblue: #202060;
+  --black: #121212;
+  --dpurple: #602080;
+  --ddpurple: #470b65;
+  --purple: #b030b0;
+  --lpurple: #fff1ff;
+  --llpurple: #ffe9ff;
+  --turi: #5bc8af;
+  --white: #ffffff;
+  --primary-font: "Poppins";
+  --secondary-font: "Roboto Condensed";
+}
+
+/* Default custom css starts */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+::selection {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  box-shadow: inset 0 0 3px var(--gray-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--purple);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dpurple);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--primary-font), sans-serif;
+  font-size: 0.9rem;
+  color: var(--dblue);
+  background: var(--lpurple);
+}
+
+a,
+button {
+  text-decoration: none;
+  transition: 0.4s;
+  color: var(--purple);
+}
+
+a:hover,
+button:hover {
+  color: var(--dblue);
+  opacity: 0.7;
+}
+
+.secondary-font {
+  font-family: var(--secondary-font), sans-serif;
+}
+
+.mt-6 {
+  margin-top: 6rem;
+}
+
+.py-6 {
+  padding: 6em 0;
+}
+
+.bg-dblue {
+  background: var(--dblue);
+}
+
+.bg-black {
+  background: var(--black);
+}
+
+.bg-dpurple {
+  background: var(--dpurple);
+}
+
+.bg-ddpurple {
+  background: var(--ddpurple);
+}
+
+.bg-purple {
+  background: var(--purple);
+}
+
+.bg-turi {
+  background: var(--turi);
+}
+
+.bg-lpurple {
+  background: var(--lpurple);
+}
+
+.bg-llpurple {
+  background: var(--llpurple);
+}
+
+.text-dblue {
+  color: var(--dblue);
+}
+
+.text-black {
+  color: var(--black);
+}
+
+.text-dpurple {
+  color: var(--dpurple);
+}
+
+.text-purple {
+  color: var(--purple);
+}
+
+.text-turi {
+  color: var(--turi);
+}
+
+.navbar {
+  transition: 0.4s;
+}
+
+.nav-item a {
+  color: var(--dblue);
+  font-size: 1.2em;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.nav-item a:hover {
+  color: var(--purple);
+  opacity: 1;
+}
+
+.navbar a {
+  margin-top: -10px;
+}
+
+.navbar-brand {
+  width: 270px;
+}
+
+@media (max-width: 1200px) {
+  .navbar-toggler i {
+    font-size: 1.2em;
+    color: var(--dpurple);
+  }
+
+  nav ul li a {
+    text-align: center;
+  }
+
+  .nav-item a:hover {
+    color: #f3c300 !important;
+  }
+
+  .navbar a {
+    margin-top: 0px;
+  }
+
+  .navbar-nav {
+    margin-top: 20px;
+    background-color: var(--white);
+  }
+}
+
+.nav-active {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.197);
+}
+
+.btn-primary {
+  background: var(--purple) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--purple);
+}
+
+.btn-primary:hover {
+  background: transparent !important;
+  color: var(--purple) !important;
+  border: 1px solid var(--purple);
+  opacity: 1;
+}
+
+.btn-outline-primary {
+  color: var(--purple) !important;
+  border: 1px solid var(--purple);
+}
+
+.btn-outline-primary:hover {
+  background: var(--purple) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--purple);
+  opacity: 1;
+}
+
+.hero {
+  padding: 9em 0.5em 5.5em 0.5em;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.scroll-down {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    bottom: 5px;
+  }
+
+  50% {
+    bottom: 12px;
+  }
+  100% {
+    bottom: 5px;
+  }
+}
+
+.tabs-buttons button {
+  color: var(--dblue) !important;
+}
+
+.tabs-buttons button.active {
+  font-size: 1.4em;
+  color: var(--purple) !important;
+}
+
+.how-it-works ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.how-it-works ul li {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.bg-faq {
+  background: url("../../img/bg-faq.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.accordion-button {
+  background: var(--llpurple);
+}
+
+footer a:hover {
+  opacity: 1 !important;
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  transition: 0.4s;
+}
+
+.scroll-top a {
+  color: var(--purple);
+  font-size: 30px;
+}
+
+/* About us */
+.breadcrumb {
+  padding: 12em 0em 6em 0em;
+}
+
+.diamond {
+  transform: scale(1.05);
+  border: 5px solid var(--purple) !important;
+}
+
+.float-word-count {
+  width: 250px;
+  height: 150px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgb(32, 32, 96, 0.85);
+  backdrop-filter: blur(5px);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 999;
+  color: var(--lpurple);
+}
+
+.payment-modal img {
+  height: 70px;
+  padding: 15px;
+  margin-left: 15px;
+  border-radius: 5px;
+  border: 3px solid var(--purple);
+}

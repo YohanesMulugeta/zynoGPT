@@ -1,0 +1,25 @@
+@media (max-width: 500px) {
+  .navbar-brand {
+    width: 200px;
+  }
+  .hero {
+    background: linear-gradient(
+        rgb(255, 241, 255, 0.95),
+        rgb(255, 241, 255, 0.95)
+      ),
+      url("../../img/hero-bg.jpg");
+    background-size: cover;
+    padding: 11em 0.5em 6.5em 0.5em;
+  }
+  .scroll-down {
+    display: none;
+  }
+  .breadcrumb {
+    padding: 8em 0em 4em 0em;
+  }
+  .float-word-count {
+    width: 200px;
+    height: 125px;
+    font-size: 17px;
+  }
+}
