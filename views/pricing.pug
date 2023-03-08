@@ -1,0 +1,69 @@
+extends base
+
+block content 
+    .scroll-top.opacity-0
+        a(href="#scroll-top")
+            i.bi.bi-arrow-up-circle-fill
+    section#scroll-top.breadcrumb
+        .container
+            .col-lg-8.text-center.text-lg-start
+                h2.fw-bold.display-5 FREE Forever!
+                hr
+                h4.text-purple.fw-bold 👨‍💼 But we have paid plans for experts 👨‍💼
+                p.opacity-75
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
+                    | nam
+                    | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+    // Modal
+    #exampleModal.modal.fade(tabindex="-1", aria-labelledby="exampleModalLabel", aria-hidden="true")
+        .modal-dialog.payment-modal
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Selected Plan Name Here
+                    button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+                .modal-body
+                    h4.fw-bold.fs-4 Continue with
+                    a(href="#")
+                        img(src="./img/Razorpay_logo.png", alt='')
+                    a(href="#")
+                        img(src="./img/Paypal_logo.png", alt='')
+    section.features.py-6.bg-white.px-3.px-lg-0
+        .container
+            .row
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/free.png", width="80px", alt='')
+                        h3.display-6.mt-3.fw-bold ₹0 / month
+                        hr
+                        h3.fw-bold.mt-2.opacity-75 Free Forever
+                        p
+                            strong 10K
+                            | words per month limit
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="/register")
+                                | Get Started
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
+                        img.img-fluid(src="./img/gold-ingots.png", width="80px", alt='')
+                        h3.display-6.mt-3.fw-bold ₹89 / month
+                        hr
+                        h3.fw-bold.mt-2.opacity-75 GOLD Plan
+                        p
+                            strong 125K
+                            | words per month limit
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="/register", data-bs-toggle="modal", data-bs-target="#exampleModal")
+                                | Get Started
+                .col-lg-4.mt-3.p-3
+                    .div.py-3.px-4.bg-white.rounded-3.border.border-1.diamond
+                        img.img-fluid(src="/img/diamond.png", width="80px", alt='')
+                        h3.display-6.mt-3.fw-bold ₹399 / month
+                        hr
+                        h3.fw-bold.mt-2.opacity-75 DIAMOND Plan
+                        p
+                            strong UNLIMITED
+                            | words per month limit
+                        .d-grid
+                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="/register", data-bs-toggle="modal", data-bs-target="#exampleModal")
+                                | Get Started
+

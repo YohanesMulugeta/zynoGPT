@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.get("/", viewController.home);
 router.get("/login", viewController.login);
-router.get("/signup", viewController.signup);
+router.get("/register", viewController.signup);
 router.get("/features", viewController.features);
+router.get("/pricing", viewController.pricing);
 
 module.exports = router;

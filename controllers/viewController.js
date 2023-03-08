@@ -16,3 +16,7 @@ exports.signup = function (req, res, next) {
 exports.features = function (req, res, next) {
   res.render("features");
 };
+
+exports.pricing = function (req, res, next) {
+  res.render("pricing");
+};
