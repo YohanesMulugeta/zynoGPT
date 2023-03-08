@@ -10,5 +10,6 @@ router.get("/register", viewController.signup);
 router.get("/features", viewController.features);
 router.get("/pricing", viewController.pricing);
 router.get("/about", viewController.about);
+router.get("/error", viewController.error);
 
 module.exports = router;
