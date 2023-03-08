@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const pug = require("pug");
 
 class Email {
   constructor(user, url) {
@@ -34,13 +35,24 @@ class Email {
     return nodemailer.createTransport(transpoerterOpt);
   }
 
-  async send(subject) {
+  async send(template, subject) {
     try {
+      // create html from pug
+      const html = pug.renderFile(
+        `${__dirname}/../views/email/${template}.pug`,
+        {
+          subject,
+          firstName: this.firstName,
+          url: this.url,
+        }
+      );
+
       await this.createTransport().sendMail({
         from: this.from,
         to: this.to,
         subject,
         text: this.url,
+        html,
       });
     } catch (err) {
       console.log(err);
@@ -48,11 +60,12 @@ class Email {
   }
 
   async sendWelcome() {
-    await this.send(`Welcome ${this.firstName}`);
+    await this.send("welcome", `Welcome ${this.firstName}`);
   }
 
   async sendResetPasswordLInk() {
     await this.send(
+      "reset",
       `Your Password Reset Link(Valid for ${process.env.RESET_EXPIRY} minutes).`
     );
   }

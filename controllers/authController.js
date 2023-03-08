@@ -92,8 +92,7 @@ exports.forgotPassword = catchAsync(async function (req, res, next) {
 
   await user.save({ validateBeforeSave: false });
 
-  const url = `Your password reset link(Valid for ${process.env.RESET_EXPIRY} minutes). please use the following link to enter new password. And if you dont request for this, ignore this message.
-  Link: ${req.protocol}://${req.hostname}/${token}`;
+  const url = `${req.protocol}://${req.hostname}/${token}`;
 
   await new Mail(user, url).sendResetPasswordLInk();
 
