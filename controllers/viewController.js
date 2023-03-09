@@ -44,3 +44,7 @@ exports.faqs = function (req, res, next) {
 exports.terms = function (req, res, next) {
   res.render("terms", { title: "Terms" });
 };
+
+exports.dashboard = function (req, res, next) {
+  res.render("dashboard", { title: "Dashboard" });
+};
