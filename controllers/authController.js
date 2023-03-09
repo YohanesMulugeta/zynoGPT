@@ -160,6 +160,7 @@ exports.isLogedin = catchAsync(async function (req, res, next) {
 
     if (!user || user.isPassChangedAfter(iat)) return next();
 
+    req.user = user;
     res.locals.user = user;
     next();
   } catch (err) {

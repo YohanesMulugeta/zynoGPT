@@ -25,19 +25,22 @@ body
         .container
             form
                 .mb-3
-                    label.form-label(for="exampleInputEmail1") Full Name
-                    input.form-control(type="text", placeholder="Enter your full name here...")
+                    label.form-label(for="name") Full Name
+                    input#name.form-control(type="text", placeholder="Enter your full name here..." value=user.name)
                 .mb-3
                     label.form-label(for="exampleInputEmail1") Username
-                    input.form-control(type="text", placeholder="Username cannot be changed", disabled)
+                    input.form-control(type="text", placeholder="Username cannot be changed", value=user.userName, disabled)
                 .mb-3
-                    label.form-label(for="exampleInputEmail1") Email address
-                    input.form-control(type="email", placeholder="Enter your email address here...")
+                    label.form-label(for="email") Email address
+                    input#email.form-control(type="email", name='email', placeholder="Enter your email address here...", value=`${user.email}`)
                 .mb-3
-                    label.form-label(for="exampleInputPassword1") New Password
-                    input.form-control(type="password", placeholder="********")
+                    label.form-label(for="currentPassword") Current Password
+                    input#currentPassword.form-control(type="password", name='currentPassword', placeholder="********", value='')
                 .mb-3
-                    label.form-label(for="exampleInputPassword1") Confirm Password
-                    input.form-control(type="password", placeholder="********")
+                    label.form-label(for="password") New Password
+                    input#password.form-control(type="password", name='password', placeholder="********")
+                .mb-3
+                    label.form-label(for="passwordConfirm") Confirm Password
+                    input#passwordConfirm.form-control(type="password", name='passwordConfirm', placeholder="********")
                 button.btn.btn-primary.fs-5.fw-bold.px-5(type="submit") SAVE
     include _footer

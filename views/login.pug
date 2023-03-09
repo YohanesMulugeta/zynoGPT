@@ -4,7 +4,7 @@ body
     .scroll-top.opacity-0
         a(href="#scroll-top")
             i.bi.bi-arrow-up-circle-fill
-    -if(!user)
+    if !user
         section#scroll-top.breadcrumb
             .container
                 .row
@@ -39,7 +39,7 @@ body
                             button.btn.btn-loginnow.btn-primary.fs-5.fw-bold.px-5(type="submit") LOGIN NOW!
                     .col-lg-5.d-none.d-lg-block
                         img.img-fluid(src="/img/login-image.png", alt='login')
-    -if(user)
+    else
         section#scroll-top.breadcrumb
             .container
                 .row

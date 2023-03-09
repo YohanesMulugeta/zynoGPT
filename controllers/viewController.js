@@ -1,9 +1,14 @@
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/AppError");
+const { render } = require("pug");
 
-exports.home = catchAsync(function (req, res, next) {
+function renderError(errMessage, statusCode, title, res) {
+  res.render("error", { title, errMessage, statusCode });
+}
+
+exports.home = function (req, res, next) {
   res.render("home", { title: "Home" });
-});
+};
 
 exports.login = function (req, res, next) {
   res.render("login", { title: "Login" });
@@ -30,6 +35,16 @@ exports.error = function (req, res, next) {
 };
 
 exports.profile = function (req, res, next) {
+  const { user } = req;
+
+  if (!user)
+    return renderError(
+      "You are not loged in. Please login and try again.",
+      400,
+      "Error",
+      res
+    );
+
   res.render("profile", { title: "Account" });
 };
 

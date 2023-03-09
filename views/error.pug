@@ -8,9 +8,9 @@ body
     section#scroll-top.breadcrumb
         .container
             .col-lg-12.text-center.text-lg-start
-                h2.fw-bold.display-5 Oops you ran into some error
+                h2.fw-bold.display-5= `${errMessage || 'Oops you ran into some error'}`
                 hr
-                h4.text-purple.fw-bold 👨‍💼 We all hat 404 errors 👨‍💼
+                h4.text-purple.fw-bold= `👨‍💼 We all hat ${statusCode || '404'} errors 👨‍💼`
                 p.opacity-75
                     | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
                     | nam
