@@ -2,8 +2,14 @@ const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/AppError");
 const { render } = require("pug");
 
-function renderError(errMessage, statusCode, title, res) {
-  res.render("error", { title, errMessage, statusCode });
+function renderError(
+  errMessage,
+  statusCode,
+  title,
+  res,
+  renderLoginOrRegister = true
+) {
+  res.render("error", { title, errMessage, statusCode, renderLoginOrRegister });
 }
 
 exports.home = function (req, res, next) {
@@ -41,7 +47,7 @@ exports.profile = function (req, res, next) {
     return renderError(
       "You are not loged in. Please login and try again.",
       400,
-      "Error",
+      "Profile",
       res
     );
 
@@ -49,6 +55,16 @@ exports.profile = function (req, res, next) {
 };
 
 exports.feature = function (req, res, next) {
+  const { user } = req;
+
+  if (!user)
+    return renderError(
+      "You are not loged in. Please login or register to get access to the Features.",
+      400,
+      "Feature",
+      res
+    );
+
   res.render("feature", { title: "Feature" });
 };
 
@@ -61,5 +77,15 @@ exports.terms = function (req, res, next) {
 };
 
 exports.dashboard = function (req, res, next) {
+  const { user } = req;
+
+  if (!user)
+    return renderError(
+      "You are not loged in. Please login or register to see your dashboard.",
+      400,
+      "Feature",
+      res
+    );
+
   res.render("dashboard", { title: "Dashboard" });
 };
