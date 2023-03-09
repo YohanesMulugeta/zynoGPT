@@ -55,17 +55,20 @@ exports.profile = function (req, res, next) {
 };
 
 exports.feature = function (req, res, next) {
+  const { feature } = req.params;
   const { user } = req;
 
   if (!user)
     return renderError(
-      "You are not loged in. Please login or register to get access to the Features.",
+      `You are not loged in. Please login or register to get access to ${feature
+        .split("-")
+        .join(" ")}.`,
       400,
-      "Feature",
+      feature,
       res
     );
 
-  res.render("feature", { title: "Feature" });
+  res.render("feature", { title: feature });
 };
 
 exports.faqs = function (req, res, next) {

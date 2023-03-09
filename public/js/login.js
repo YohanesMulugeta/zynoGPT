@@ -24,6 +24,7 @@ export async function handleLogin(e) {
 export async function handleLogout(e) {
   try {
     e.preventDefault();
+    e.target.textContent = "Loging out...";
     await axios({ method: "get", url: "/api/v1/users/logout" });
 
     setTimeout(() => {

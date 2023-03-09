@@ -53,3 +53,11 @@ exports.deleteUser = catchAsync(async function (req, res, next) {
     message: "user deleted successfully",
   });
 });
+
+exports.deleteAll = catchAsync(async function (req, res, next) {
+  await User.deleteMany();
+
+  res
+    .status(204)
+    .json({ status: "success", message: "Successfully wiped out." });
+});

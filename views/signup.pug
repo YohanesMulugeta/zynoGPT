@@ -18,46 +18,41 @@ body
                         | velit
                         | nam
                         | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
-                    form
+                    form.signup-form
                         .mb-3
-                            label.form-label(for="exampleInputEmail1") Full Name
-                            input.form-control(type="text", placeholder="Enter your full name here...")
+                            label.form-label(for="full-name") Full Name
+                            input#full-name.form-control(type="text", anme='fullname', placeholder="Enter your full name here...")
+                            
+                        .mb-3
+                            label.form-label(for="user-name") Username
+                            input#user-name.form-control(type="text",name='username', placeholder="Enter your desired username here...")
+                            
+                        .mb-3
+                            label.form-label(for="email") Email address
+                            input#email.form-control(type="email",name='email', placeholder="Enter your email address here...")
                             #emailHelp.form-text We&apos;ll never share your email with anyone else.
                         .mb-3
-                            label.form-label(for="exampleInputEmail1") Username
-                            input.form-control(type="text", placeholder="Enter your desired username here...")
-                            #emailHelp.form-text We&apos;ll never share your email with anyone else.
+                            label.form-label(for="password") Password
+                            input#password.form-control(type="password",name='password', placeholder="********")
                         .mb-3
-                            label.form-label(for="exampleInputEmail1") Email address
-                            input.form-control(type="email", placeholder="Enter your email address here...")
-                            #emailHelp.form-text We&apos;ll never share your email with anyone else.
-                        .mb-3
-                            label.form-label(for="exampleInputPassword1") Password
-                            input.form-control(type="password", placeholder="********")
-                        .mb-3
-                            label.form-label(for="exampleInputPassword1") Confirm Password
-                            input.form-control(type="password", placeholder="********")
+                            label.form-label(for="passwordConfirm") Confirm Password
+                            input#passwordConfirm.form-control(type="password",name='passwordConfirm', placeholder="********")
                         .row
                             .col-lg-6
                                 .mb-3.form-check.d-flex.justify-content-center.d-lg-block.justify-content-lg-start
                                     .div
-                                        input#exampleCheck1.form-check-input(type="checkbox")
+                                        input#accept-terms.form-check-input(type="checkbox")
                                         label.form-check-label(for="exampleCheck1") Accept the 
-                                            a(href="terms.html") Terms
+                                            a(href="/terms") Terms
                                             | ?
                             .col-lg-6.mb-3
                                 .form-check.d-flex.justify-content-center.d-lg-block.justify-content-lg-start
                                     .div
-                                        input#exampleCheck1.form-check-input(type="checkbox")
+                                        input#accept-cookie.form-check-input(type="checkbox")
                                         label.form-check-label(for="exampleCheck1") Accept the 
-                                            a(href="cookie.html") Cookie Policy
+                                            a(href="/cookie") Cookie Policy
                                             | ?
-                        button.btn.btn-primary.fs-5.fw-bold.px-5(type="submit") LOGIN NOW!
+                        button.btn.btn-primary.fs-5.fw-bold.px-5(type="submit") REGISTER NOW!
                 .col-lg-5.d-none.d-lg-flex.align-items-center
                     img.img-fluid(src="./img/register-image.png", alt='')
     include _footer
-    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", crossorigin="anonymous")
-    // typed js
-    script(src="./assets/js/typed.js")
-    // Custom JS
-    script(src="./assets/js/script.js")

@@ -21,10 +21,15 @@ router.route("/me").get(authController.getMe);
 router.use(authController.strictTo("admin", "dev"));
 
 // Admin
-router.route("/").get(userController.getAllUsers);
+router
+  .route("/")
+  .get(userController.getAllUsers)
+  .delete(userController.deleteAll);
+
 router
   .route("/:id")
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
+
 module.exports = router;

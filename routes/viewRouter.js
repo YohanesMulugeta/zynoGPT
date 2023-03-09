@@ -18,7 +18,7 @@ router.get("/faqs", viewController.faqs);
 router.get("/terms", viewController.terms);
 
 router.get("/profile", viewController.profile);
-router.get("/feature", viewController.feature);
+router.get("/features/:feature", viewController.feature);
 router.get("/dashboard", viewController.dashboard);
 
 module.exports = router;

@@ -46,7 +46,7 @@ function signAndSend(user, statusCode, res) {
 // -------------------------------- SIGNUP
 
 exports.signUp = catchAsync(async function (req, res, next) {
-  const { name, email, role, password, passwordConfirm, photo } = req.body;
+  const { name, email, password, passwordConfirm, photo, userName } = req.body;
 
   const user = await User.create({
     name,
@@ -54,9 +54,10 @@ exports.signUp = catchAsync(async function (req, res, next) {
     password,
     passwordConfirm,
     photo,
-    role,
+    userName: userName.slice(0, 1).toUpperCase() + userName.slice(1),
   });
 
+  // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
   signAndSend(user, 201, res);
 });
 
