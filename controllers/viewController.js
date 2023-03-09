@@ -1,9 +1,9 @@
 const catchAsync = require("../util/catchAsync");
 const AppError = require("../util/AppError");
 
-exports.home = function (req, res, next) {
+exports.home = catchAsync(function (req, res, next) {
   res.render("home", { title: "Home" });
-};
+});
 
 exports.login = function (req, res, next) {
   res.render("login", { title: "Login" });

@@ -139,6 +139,46 @@ exports.resetPassword = catchAsync(async function (req, res, next) {
   signAndSend(updatedUser, 200, res);
 });
 
+// ------------------------ isLogedIn
+
+exports.isLogedin = catchAsync(async function (req, res, next) {
+  try {
+    const { authorization } = req.headers;
+
+    const token =
+      (authorization?.startsWith("Bearer") && authorization.split(" ")[1]) ||
+      req.cookies.jwt;
+
+    if (!token) return next();
+
+    const { id, iat } = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_SECRET
+    );
+
+    const user = await User.findById(id).select("+password");
+
+    if (!user || user.isPassChangedAfter(iat)) return next();
+
+    res.locals.user = user;
+    next();
+  } catch (err) {
+    return next();
+  }
+});
+
+exports.logout = function (req, res, next) {
+  const cookieOpt = {
+    expires: new Date(Date.now() + 1000),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+  };
+
+  res.cookie("jwt", "", cookieOpt);
+
+  res.status(200).json({ status: "success", message: "Logout successful." });
+};
+
 // ------------------------ PROTECT
 exports.protect = catchAsync(async function (req, res, next) {
   const { authorization } = req.headers;

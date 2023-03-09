@@ -4,40 +4,47 @@ body
     .scroll-top.opacity-0
         a(href="#scroll-top")
             i.bi.bi-arrow-up-circle-fill
-    section#scroll-top.breadcrumb
-        .container
-            .row
-                .col-lg-7.text-center.text-lg-start
-                    h2.fw-bold.display-5 Login
-                    img(src="/img/google-signin-button.png", height="50px", alt='')
-                    img.ms-0.ms-lg-4(src="/img/login-button-png-18026.png", height="50px", alt='')
-                    hr
-                    h4.text-purple.fw-bold 🥳 Welcome Back to Zyno(dot)Ink 🥳
-                    p.opacity-75
-                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae
-                        | velit
-                        | nam
-                        | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
-                    form.login-form
-                        .mb-3
-                            label.form-label(for="email") Username
-                            input#email.form-control(type="email", name='email', placeholder="Enter your registered username here...")
-                        .mb-3
-                            label.form-label(for="password") Password
-                            input#password.form-control(type="password", name='password', placeholder="********")
-                        .row
-                            .col-lg-6
-                                .mb-3.form-check.d-flex.justify-content-center.d-lg-block.justify-content-lg-start
-                                    .div
-                                        input#exampleCheck1.form-check-input(type="checkbox", name='')
-                                        label.form-check-label(for="exampleCheck1")
-                                            | Remember this
-                                            | device?
-                            .col-lg-6.mb-3
-                                a(href="/forgot-password", class='forgot-password') Forgot Password?
-                        button.btn.btn-primary.fs-5.fw-bold.px-5(type="submit") LOGIN NOW!
-                .col-lg-5.d-none.d-lg-block
-                    img.img-fluid(src="/img/login-image.png", alt='login')
+    -if(!user)
+        section#scroll-top.breadcrumb
+            .container
+                .row
+                    .col-lg-7.text-center.text-lg-start
+                        h2.fw-bold.display-5 Login
+                        img(src="/img/google-signin-button.png", height="50px", alt='')
+                        img.ms-0.ms-lg-4(src="/img/login-button-png-18026.png", height="50px", alt='')
+                        hr
+                        h4.text-purple.fw-bold 🥳 Welcome Back to Zyno(dot)Ink 🥳
+                        p.opacity-75
+                            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae
+                            | velit
+                            | nam
+                            | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
+                        form.login-form
+                            .mb-3
+                                label.form-label(for="email") Username
+                                input#email.form-control(type="email", name='email', placeholder="Enter your registered username here...")
+                            .mb-3
+                                label.form-label(for="password") Password
+                                input#password.form-control(type="password", name='password', placeholder="********")
+                            .row
+                                .col-lg-6
+                                    .mb-3.form-check.d-flex.justify-content-center.d-lg-block.justify-content-lg-start
+                                        .div
+                                            input#exampleCheck1.form-check-input(type="checkbox", name='')
+                                            label.form-check-label(for="exampleCheck1")
+                                                | Remember this
+                                                | device?
+                                .col-lg-6.mb-3
+                                    a(href="/forgot-password", class='forgot-password') Forgot Password?
+                            button.btn.btn-loginnow.btn-primary.fs-5.fw-bold.px-5(type="submit") LOGIN NOW!
+                    .col-lg-5.d-none.d-lg-block
+                        img.img-fluid(src="/img/login-image.png", alt='login')
+    -if(user)
+        section#scroll-top.breadcrumb
+            .container
+                .row
+                    .col-lg-7.text-center.text-lg-start
+                        h2.fw-bold.display-5 You are already loged in.
     include _footer
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", crossorigin="anonymous")
     // typed js

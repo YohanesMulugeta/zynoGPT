@@ -5,6 +5,8 @@ const authController = require("../controllers/authController");
 
 const router = express.Router();
 
+router.use(authController.isLogedin);
+
 router.get("/", viewController.home);
 router.get("/login", viewController.login);
 router.get("/register", viewController.signup);
