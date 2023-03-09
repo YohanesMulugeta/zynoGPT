@@ -40,3 +40,7 @@ exports.feature = function (req, res, next) {
 exports.faqs = function (req, res, next) {
   res.render("faqs", { title: "Faqs" });
 };
+
+exports.terms = function (req, res, next) {
+  res.render("terms", { title: "Terms" });
+};
