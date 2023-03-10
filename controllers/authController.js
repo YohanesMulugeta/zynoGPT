@@ -54,7 +54,7 @@ exports.signUp = catchAsync(async function (req, res, next) {
     password,
     passwordConfirm,
     photo,
-    userName: userName.slice(0, 1).toUpperCase() + userName.slice(1),
+    userName: userName?.slice(0, 1).toUpperCase() + userName?.slice(1),
   });
 
   // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
@@ -199,6 +199,14 @@ exports.protect = catchAsync(async function (req, res, next) {
   );
 
   const user = await User.findById(id).select("+password");
+
+  if (!user)
+    return next(
+      new AppError(
+        "There is no user with this token. Pleaase login and try again.",
+        400
+      )
+    );
 
   if (user.isPassChangedAfter(iat))
     return next(

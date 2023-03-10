@@ -4,6 +4,9 @@ class AppError extends Error {
 
     this.statusCode = statusCode || 500;
     this.isOperational = true;
+    this.status = `${statusCode}`.startsWith("4") ? "Fail" : "Error";
+
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
