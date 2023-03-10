@@ -1,4 +1,5 @@
 extends base
+include _featureCard
 block content
     .scroll-top.opacity-0
         a(href="#scroll-top")
@@ -93,66 +94,14 @@ block content
                 | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam
                 | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
             .row
-                .col-lg-4.mt-3.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/contract.png", width="80px", alt="")
-                        h3.fw-bold.mt-2 Essay Writing
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="essay-writing.html")
-                                | Read More
-                .col-lg-4.mt-3.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/assignment.png", width="80px", alt='')
-                        h3.fw-bold.mt-2 Assignment Writing
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="assignment-writing.html")
-                                | Read More
-                .col-lg-4.mt-3.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/letter.png", width="80px", alt='')
-                        h3.fw-bold.mt-2 Cover Letter Writing
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="cover-letter-writing.html")
-                                | Read More
-                .col-lg-4.mt-3.mt-lg-2.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/youtube.png", width="80px", alt='')
-                        h3.fw-bold.mt-2 YT Video Script
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="youtube-video-script-generator.html")
-                                | Read More
-                .col-lg-4.mt-3.mt-lg-2.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/hashtag.png", width="80px", alt='')
-                        h3.fw-bold.mt-2 Hashtags Generator
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="hashtags-generator.html")
-                                | Read More
-                .col-lg-4.mt-3.mt-lg-2.p-3
-                    .div.py-3.px-4.bg-white.rounded-3.border.border-1
-                        img.img-fluid(src="./img/startup.png", width="80px", alt='')
-                        h3.fw-bold.mt-2 Startup Ideas Generator
-                        p
-                            | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error
-                            | nihil?
-                        .d-grid
-                            a.btn-primary.btn.fs-5.fw-bold.px-4(href="startup-ideas-generator.html")
-                                | Read More
+                +feature('contract','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','essay-writing','Essay Writing')
+                +feature('assignment','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','assignment-writing','Assignment Writing')
+                +feature('letter','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','cover-letter-writing','Cover Letter Writing')
+                +feature('youtube','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','youtube-video-script-generator','YT Video Script')
+                +feature('hashtag','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','hashtags-generator','Hashtags Generator')
+                +feature('startup','','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae quae delectus expedita error nihil?','startup-ideas-generator','Startup Ideas Generator')
+               
+
             .text-center.mt-5
                 h4.fw-bold.display-5 Want to check out all the features? 😄
                 a.btn-primary.btn.fs-4.fw-bold.px-5(href="features.html")
