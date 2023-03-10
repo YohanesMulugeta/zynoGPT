@@ -1,0 +1,72 @@
+{
+  "leaveletterwriting": {
+    "head1": "Write your Name here.",
+    "head2": "Write the person's name or role in which you are going to send the letter here.",
+    "head3": "Write the number of days you want leave.",
+    "photo": "leaveletter",
+    "head4": "Write a small description of the reason here."
+  },
+  "coverletterwriting": {
+    "head1": "Write your Name here.",
+    "head2": "Write your Desired Job Title here.",
+    "head3": "Write your Skill set here.",
+    "head4": "Write your a small description about yourself here.",
+    "photo": "letter"
+  },
+  "essaywriting": {
+    "head1": "Write your Essay Title here.",
+    "photo": "contract",
+    "head2": "Write a small description here.",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "assignmentwriting": {
+    "head1": "Write your Assignment Title here.",
+    "photo": "assignment",
+    "head2": "Write a small description here.",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "brandnamegenerator": {
+    "head1": "Write your desired words to be included.",
+    "photo": "brand-identity",
+    "head2": "Write a small description you have in your mind about your business.",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "socialmediacaptions": {
+    "head1": "Write your post's Title here.",
+    "photo": "social-media",
+    "head2": "Write a small description here.",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "textexpander": {
+    "head1": "Paste your original content here.",
+    "photo": "note",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "textparaphrase": {
+    "head1": "Paste your original content here.",
+    "photo": "paraphrase",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "startupideasgenerator": {
+    "head1": "Write your idea in a single line.",
+    "photo": "startup",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "hashtagsgenerator": {
+    "head1": "Write your idea in a single line.",
+    "photo": "hashtag",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "youtubevideodescriptiongenerator": {
+    "head1": "Write your video title here.",
+    "head2": "Write some keywords related to video.",
+    "photo": "youtube-des",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  },
+  "youtubevideoscriptgenerator": {
+    "head1": "Write your desired video title here.",
+    "photo": "youtube",
+    "head2": "Write some keywords related to video.",
+    "featureDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit nam consectetur, in ullam natus pariatur aliquid. Aut, magnam!"
+  }
+}

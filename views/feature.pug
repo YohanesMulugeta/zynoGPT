@@ -7,24 +7,39 @@ body
     section#scroll-top.breadcrumb
         .container
             .col-lg-8.text-center.text-lg-start
-                h2.fw-bold.display-5 Essay Writing
+                h2.fw-bold.display-5= title 
                 hr
                 h4.text-purple.fw-bold 👨‍💼 We are also HUMANS 👨‍💼
-                p.opacity-75
-                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae velit
-                    | nam
-                    | consectetur, in ullam natus pariatur aliquid. Aut, magnam!
-    section.essay-writing.py-6.px-2.px-lg-4.bg-white
+                p.opacity-75= featureDescription
+    section.py-6.px-2.px-lg-4.bg-white(class=`${title.toLowerCase().split(' ').join('-')}`)
         .container
             form(action="POST")
                 .row
                     .col-lg-6.p-4
                         .div
-                            h5.fw-bold.fs-4 Write your Essay Title here.
-                            input.form-control(type="text", name='', placeholder="Start typing in here...")
-                            h5.fw-bold.fs-4.mt-4 Write a small description here.
-                            textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                            if head3 
+                                h5.fw-bold.fs-4= head1
+                                input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                h5.fw-bold.fs-4.mt-4= head2
+                                input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                h5.fw-bold.fs-4.mt-4= head3
+                                input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                h5.fw-bold.fs-4.mt-4= head4
+                                textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                            else if head2
+                                h5.fw-bold.fs-4= head1
+                                input.form-control(type="text", name='', placeholder="Start typing in here...")
+                                h5.fw-bold.fs-4.mt-4= head2
+                                textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                            else
+                                h5.fw-bold.fs-4= head1
+                                -if(title === 'Text Paraphrase' || title==='Text Expander')
+                                    textarea.form-control(type="text", name='', placeholder="Start typing in here...")
+                                -else
+                                    input.form-control(type="text", name='', placeholder="Start typing in here...")
+
                             input.btn.btn-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Submit")
+                            |   
                             input.btn.btn-outline-primary.mt-2.fw-bold.fs-5.px-4.mt-3(type="submit", value="Regenerate")
                     include _gptOutput
     include _footer
