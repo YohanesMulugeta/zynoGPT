@@ -1,18 +1,9 @@
 const fs = require("fs");
+const AppError = require("../util/AppError");
 
 const features = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/features-description.json`, "utf-8")
 );
-
-function renderError(
-  errMessage,
-  statusCode,
-  title,
-  res,
-  renderLoginOrRegister = true
-) {
-  res.render("error", { title, errMessage, statusCode, renderLoginOrRegister });
-}
 
 exports.home = function (req, res, next) {
   res.render("home", { title: "Home" });
@@ -46,11 +37,8 @@ exports.profile = function (req, res, next) {
   const { user } = req;
 
   if (!user)
-    return renderError(
-      "You are not loged in. Please login and try again.",
-      400,
-      "Profile",
-      res
+    return next(
+      new AppError("You are not loged in. Please login and try again.", 400)
     );
 
   res.render("profile", { title: "Account" });
@@ -61,13 +49,13 @@ exports.feature = function (req, res, next) {
   const { user } = req;
 
   if (!user)
-    return renderError(
-      `You are not loged in. Please login or register to get access to ${feature
-        .split("-")
-        .join(" ")}.`,
-      400,
-      feature,
-      res
+    return next(
+      new AppError(
+        `You are not logged in. Please login or register to get access to ${feature
+          .split("-")
+          .join(" ")}.`,
+        400
+      )
     );
 
   const title = feature
@@ -92,13 +80,12 @@ exports.terms = function (req, res, next) {
 exports.dashboard = function (req, res, next) {
   const { user } = req;
 
-  if (!user)
-    return renderError(
+  return next(
+    new AppError(
       "You are not loged in. Please login or register to see your dashboard.",
-      400,
-      "Feature",
-      res
-    );
+      400
+    )
+  );
 
   res.render("dashboard", { title: "Dashboard" });
 };

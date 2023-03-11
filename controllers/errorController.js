@@ -1,4 +1,6 @@
 const AppError = require("../util/AppError");
+
+// --------------------------- DEV ERROR
 function handleDevErr(err, req, res) {
   if (req.originalUrl.startsWith("/api"))
     res.status(err.statusCode).json({
@@ -13,6 +15,33 @@ function handleDevErr(err, req, res) {
       errMessage: err.message,
       statusCode: err.statusCode,
     });
+}
+
+function handleProError(err, req, res) {
+  if (req.originalUrl.startsWith("/api")) {
+    if (err.isOperational)
+      return res
+        .status(err.statusCode)
+        .json({ status: err.status, message: err.message });
+
+    console.log("Error", err);
+
+    return res.status(500).json({
+      status: "Fail",
+      message: "Something went wrong. Please try again.",
+    });
+  }
+
+  if (err.isOperational)
+    return res.status(err.statusCode).render("error", {
+      title: "Something Went Wrong.",
+      errMessage: err.message,
+    });
+
+  return res.status(err.statusCode).render("error", {
+    title: "Something Went Wrong",
+    errMessage: "Please tryagain",
+  });
 }
 
 function handleCastError(err) {
@@ -40,7 +69,7 @@ function handleValidationError(err) {
 module.exports = function (err, req, res, next) {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "Error";
-  let error = { ...err };
+  let error = { ...err, message: err.message };
 
   if (err.code === 11000) error = handleDuplicateErr(err);
   if (err.name === "JsonWebTokenError") error = handleWebTokenError();
