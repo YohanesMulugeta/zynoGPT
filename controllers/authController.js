@@ -46,15 +46,23 @@ function signAndSend(user, statusCode, res) {
 // -------------------------------- SIGNUP
 
 exports.signUp = catchAsync(async function (req, res, next) {
-  const { name, email, password, passwordConfirm, photo, userName } = req.body;
+  if (req.user)
+    return next(
+      new AppError(
+        "You are already loged in. Please logout and try again.",
+        400
+      )
+    );
+
+  const { name, email, password, passwordConfirm, userName } = req.body;
 
   const user = await User.create({
-    name,
-    email,
-    password,
-    passwordConfirm,
-    photo,
-    userName: userName?.slice(0, 1).toUpperCase() + userName?.slice(1),
+    name: name.trim(),
+    email: email.trim(),
+    password: password.trim(),
+    passwordConfirm: passwordConfirm.trim(),
+    userName:
+      userName?.trim().slice(0, 1).toUpperCase() + userName?.trim().slice(1),
   });
 
   // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
