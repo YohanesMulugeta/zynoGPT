@@ -14,6 +14,12 @@ const userSchema = new mongoose.Schema({
     maxLength: [8, "User name should not be greater than 8 characters."],
     minLength: [3, "User name should not be less than 3 cahracters"],
     unique: true,
+    validate: {
+      validator: function (value) {
+        return !value.trim().split("").includes(" ");
+      },
+      message: "userName can not include spaces. Please try again.",
+    },
   },
   email: {
     type: String,
@@ -73,6 +79,22 @@ userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 
   this.passwordChangedAt = Date.now();
+  next();
+});
+
+// Formate Name
+userSchema.pre("save", function (next) {
+  if (!this.isModified("name")) return next();
+
+  let [firstName, lastName] = this.name.split(" ");
+
+  firstName = firstName.slice(0, 1).toUpperCase() + firstName.slice(1);
+  lastName = lastName
+    ? lastName.slice(0, 1).toUpperCase() + lastName.slice(1)
+    : "";
+
+  this.name = `${firstName} ${lastName}`;
+
   next();
 });
 
