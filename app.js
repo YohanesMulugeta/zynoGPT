@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 const userRouter = require("./routes/userRouter");
 const viewRouter = require("./routes/viewRouter");
+const gptRouter = require("./routes/gptRouter");
 const appErrorHandler = require("./controllers/errorController");
 
 const app = express();
@@ -16,6 +17,7 @@ app.set("view engine", "pug");
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/ai", gptRouter);
 app.use("/", viewRouter);
 
 app.use("*", (req, res, next) => {
