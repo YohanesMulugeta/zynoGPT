@@ -14,6 +14,7 @@ function handleDevErr(err, req, res) {
       title: "Something Went Wrong",
       errMessage: err.message,
       statusCode: err.statusCode,
+      renderLoginOrRegister: req.renderLoginOrRegister,
     });
 }
 

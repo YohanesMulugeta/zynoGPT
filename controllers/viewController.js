@@ -36,10 +36,12 @@ exports.error = function (req, res, next) {
 exports.profile = function (req, res, next) {
   const { user } = req;
 
-  if (!user)
+  if (!user) {
+    req.renderLoginOrRegister = true;
     return next(
       new AppError("You are not loged in. Please login and try again.", 400)
     );
+  }
 
   res.render("profile", { title: "Account" });
 };
@@ -48,7 +50,8 @@ exports.feature = function (req, res, next) {
   const { feature } = req.params;
   const { user } = req;
 
-  if (!user)
+  if (!user) {
+    req.renderLoginOrRegister = true;
     return next(
       new AppError(
         `You are not logged in. Please login or register to get access to ${feature
@@ -57,6 +60,7 @@ exports.feature = function (req, res, next) {
         400
       )
     );
+  }
 
   const title = feature
     .split("-")
@@ -80,12 +84,15 @@ exports.terms = function (req, res, next) {
 exports.dashboard = function (req, res, next) {
   const { user } = req;
 
-  return next(
-    new AppError(
-      "You are not loged in. Please login or register to see your dashboard.",
-      400
-    )
-  );
+  if (!user) {
+    req.renderLoginOrRegister = true;
+    return next(
+      new AppError(
+        "You are not loged in. Please login or register to see your dashboard.",
+        400
+      )
+    );
+  }
 
   res.render("dashboard", { title: "Dashboard" });
 };
