@@ -17,7 +17,7 @@ export async function handleLogin(e) {
       location.assign("/");
     }, 2000);
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
   }
 }
 

@@ -63,7 +63,6 @@ function handleWebTokenError() {
 }
 
 function handleValidationError(err) {
-  console.log("lala");
   return new AppError(err.message, 400);
 }
 

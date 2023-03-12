@@ -59,7 +59,7 @@ const userSchema = new mongoose.Schema({
   },
   emailVerificationToken: { type: String, select: false },
   emailVerificationExpiry: Date,
-  emailVerified: { type: Boolean, default: false },
+  emailVerified: Boolean,
 });
 
 function generateRandomToken() {
@@ -90,6 +90,12 @@ userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 
   this.passwordChangedAt = Date.now();
+  next();
+});
+
+userSchema.pre("save", function (next) {
+  if (this.isNew) this.emailVerified = false;
+
   next();
 });
 

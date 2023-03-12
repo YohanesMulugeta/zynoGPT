@@ -64,7 +64,7 @@ class Email {
 
   async sendEmailVerification() {
     await this.send(
-      "welcome",
+      "verify",
       `Your Email verification LInk(Valid for ${process.env.EMAIL_VERIFICATION} minutes).`
     );
   }

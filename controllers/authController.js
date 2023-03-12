@@ -46,13 +46,13 @@ function signAndSend(user, statusCode, res) {
 // -------------------------------- SIGNUP
 
 exports.signUp = catchAsync(async function (req, res, next) {
-  // if (req.user)
-  //   return next(
-  //     new AppError(
-  //       "You are already loged in. Please logout and try again.",
-  //       400
-  //     )
-  //   );
+  if (req.user)
+    return next(
+      new AppError(
+        "You are already loged in. Please logout and try again.",
+        400
+      )
+    );
 
   const { name, email, password, passwordConfirm, userName } = req.body;
 
@@ -66,7 +66,7 @@ exports.signUp = catchAsync(async function (req, res, next) {
   });
 
   const emailVerificationToken = user.createEmailVerificationToken();
-  const url = `${req.protocol}://${req.hostname}/verifyemail/${emailVerificationToken}`;
+  const url = `${req.protocol}://${req.hostname}:8000/api/v1/users/verifyemail/${emailVerificationToken}`;
 
   user.save({ validateBeforeSave: false });
 
@@ -144,6 +144,9 @@ exports.logIn = catchAsync(async function (req, res, next) {
     return next(new AppError("Both email and password are required.", 400));
 
   const user = await User.findOne({ email }).select("+password");
+
+  if (user.emailVerified === false)
+    return next(new AppError("Please verify your email inorder to login", 400));
 
   const isPasswordCorrect = await user?.isCorrect(password);
   if (!isPasswordCorrect)
