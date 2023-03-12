@@ -59,6 +59,7 @@ const userSchema = new mongoose.Schema({
   },
   emailVerificationToken: { type: String, select: false },
   emailVerificationExpiry: String,
+  emailVerified: { type: Boolean, default: false },
 });
 
 function generateRandomToken() {

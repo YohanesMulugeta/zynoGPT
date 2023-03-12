@@ -66,7 +66,7 @@ exports.signUp = catchAsync(async function (req, res, next) {
   });
 
   const emailVerificationToken = user.createEmailVerificationToken();
-  const url = `${req.protocol}://${req.originalUrl}/verifyEmail/${emailVerificationToken}`;
+  const url = `${req.protocol}://${req.hostname}/verifyemail/${emailVerificationToken}`;
 
   user.save({ validateBeforeSave: false });
 
@@ -80,7 +80,41 @@ exports.signUp = catchAsync(async function (req, res, next) {
   }
 
   // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
-  signAndSend(user, 201, res);
+  // signAndSend(user, 201, res);
+
+  res.status(201).json({
+    status: "success",
+    message:
+      "We have sent an email verification link to your email. Please verify your email within 30 minutes.",
+    emailVerificationToken,
+  });
+});
+
+// ------------------------------- VERIFY EMAIL
+exports.verifyEmail = catchAsync(async function (req, res, next) {
+  // Recive token
+  const { token } = req.params;
+
+  // 2) ENCRYPT TOKEN
+  const encryptedToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
+
+  // 3) FINGD THE USER WITH THIS TOKEN IF NO THROW ERROR
+  const user = await User.findOne({ emailVerificationToken: encryptedToken });
+  if (!user)
+    return next(new AppError("No user with this verification link.", 400));
+
+  // 4) UPDATE THE USER EMAILvERIFIED FIELD TO UNDEFINED
+  user.emailVerified = undefined;
+  await user.save({ validateBeforeSave: false });
+
+  // 5) SEND SUCCESS MESSAGE
+  res.status(200).json({
+    status: "success",
+    message: "You verified your email successfully",
+  });
 });
 
 // ------------------------------- LOGIN
