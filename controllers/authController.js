@@ -46,13 +46,13 @@ function signAndSend(user, statusCode, res) {
 // -------------------------------- SIGNUP
 
 exports.signUp = catchAsync(async function (req, res, next) {
-  if (req.user)
-    return next(
-      new AppError(
-        "You are already loged in. Please logout and try again.",
-        400
-      )
-    );
+  // if (req.user)
+  //   return next(
+  //     new AppError(
+  //       "You are already loged in. Please logout and try again.",
+  //       400
+  //     )
+  //   );
 
   const { name, email, password, passwordConfirm, userName } = req.body;
 
@@ -64,6 +64,20 @@ exports.signUp = catchAsync(async function (req, res, next) {
     userName:
       userName?.trim().slice(0, 1).toUpperCase() + userName?.trim().slice(1),
   });
+
+  const emailVerificationToken = user.createEmailVerificationToken();
+  const url = `${req.protocol}://${req.originalUrl}/verifyEmail/${emailVerificationToken}`;
+
+  user.save({ validateBeforeSave: false });
+
+  try {
+    await new Mail(user, url).sendEmailVerification();
+  } catch (err) {
+    await User.findByIdAndDelete(user._id);
+    return next(
+      new AppError("Sorry something went wrong, Please try again.", 500)
+    );
+  }
 
   // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
   signAndSend(user, 201, res);

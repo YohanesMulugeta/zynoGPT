@@ -36,27 +36,20 @@ class Email {
   }
 
   async send(template, subject) {
-    try {
-      // create html from pug
-      const html = pug.renderFile(
-        `${__dirname}/../views/email/${template}.pug`,
-        {
-          subject,
-          firstName: this.firstName,
-          url: this.url,
-        }
-      );
+    // create html from pug
+    const html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
+      subject,
+      firstName: this.firstName,
+      url: this.url,
+    });
 
-      await this.createTransport().sendMail({
-        from: this.from,
-        to: this.to,
-        subject,
-        text: this.url,
-        html,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await this.createTransport().sendMail({
+      from: this.from,
+      to: this.to,
+      subject,
+      text: this.url,
+      html,
+    });
   }
 
   async sendWelcome() {
@@ -67,6 +60,13 @@ class Email {
     await this.send(
       "reset",
       `Your Password Reset Link(Valid for ${process.env.RESET_EXPIRY} minutes).`
+    );
+  }
+
+  async sendEmailVerification() {
+    await this.send(
+      "welcome",
+      `Your Email verification LInk(Valid for ${process.env.EMAIL_VERIFICATION} minutes).`
     );
   }
 }

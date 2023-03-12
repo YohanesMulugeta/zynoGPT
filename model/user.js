@@ -57,7 +57,17 @@ const userSchema = new mongoose.Schema({
     enum: ["user", "admin", "dev"],
     default: "user",
   },
+  emailVerificationToken: { type: String, select: false },
+  emailVerificationExpiry: String,
 });
+
+function generateRandomToken() {
+  const randStr = crypto.randomBytes(20).toString("hex");
+
+  const token = crypto.createHash("sha256").update(randStr).digest("hex");
+
+  return [token, randStr];
+}
 
 // ---------------------- MIDDLWARES
 
@@ -103,13 +113,25 @@ userSchema.methods.isCorrect = async function (candidatePass) {
   return await bcrypt.compare(candidatePass, this.password);
 };
 
-userSchema.methods.createForgotToken = function () {
-  const randStr = crypto.randomBytes(20).toString("hex");
+// Email Verification Token Generator
+userSchema.methods.createEmailVerificationToken = function () {
+  const [token, randStr] = generateRandomToken();
 
-  const token = crypto.createHash("sha256").update(randStr).digest("hex");
+  this.emailVerificationToken = token;
+  this.emailVerificationExpiry = new Date(
+    Date.now() + process.env.EMAIL_VERIFICATION * 60 * 1000
+  );
+
+  return randStr;
+};
+
+userSchema.methods.createForgotToken = function () {
+  const [token, randStr] = generateRandomToken();
 
   this.resetToken = token;
-  this.resetTokenExpiry = new Date(Date.now() + 10 * 60 * 1000);
+  this.resetTokenExpiry = new Date(
+    Date.now() + process.env.RESET_EXPIRY * 60 * 1000
+  );
 
   return randStr;
 };
