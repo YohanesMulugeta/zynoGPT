@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
   emailVerificationToken: { type: String, select: false },
-  emailVerificationExpiry: String,
+  emailVerificationExpiry: Date,
   emailVerified: { type: Boolean, default: false },
 });
 

@@ -82,6 +82,10 @@ exports.signUp = catchAsync(async function (req, res, next) {
   // await new Mail(user, `${req.protocol}://${req.hostname}/`).sendWelcome();
   // signAndSend(user, 201, res);
 
+  setTimeout(async () => {
+    await User.findOneAndDelete({ _id: user._id, emailVerified: false });
+  }, process.env.EMAIL_VERIFICATION * 60 * 1000);
+
   res.status(201).json({
     status: "success",
     message:
@@ -104,10 +108,24 @@ exports.verifyEmail = catchAsync(async function (req, res, next) {
   // 3) FINGD THE USER WITH THIS TOKEN IF NO THROW ERROR
   const user = await User.findOne({ emailVerificationToken: encryptedToken });
   if (!user)
-    return next(new AppError("No user with this verification link.", 400));
+    return next(new AppError("No user with this verification link.", 404));
 
+  // delete user if there is a user with expired token
+  if (user.emailVerificationExpiry.getTime() < Date.now()) {
+    User.findByIdAndDelete(user._id).exec();
+
+    return next(
+      new AppError(
+        "Email verification expired please sign up again and verify your email.",
+        400
+      )
+    );
+  }
   // 4) UPDATE THE USER EMAILvERIFIED FIELD TO UNDEFINED
   user.emailVerified = undefined;
+  user.emailVerificationExpiry = undefined;
+  user.emailVerificationToken = undefined;
+
   await user.save({ validateBeforeSave: false });
 
   // 5) SEND SUCCESS MESSAGE
