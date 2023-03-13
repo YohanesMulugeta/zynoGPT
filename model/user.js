@@ -49,6 +49,11 @@ const userSchema = new mongoose.Schema({
     enum: ["free", "gold", "diamond"],
     default: "free",
   },
+  wordsLeft: {
+    type: Number,
+    default: process.env.WORDS_FREE,
+  },
+  wordsUpdatedAt: Date,
   resetToken: { type: String, select: false },
   resetTokenExpiry: { type: Date, select: false },
   passwordChangedAt: Date,
@@ -94,8 +99,10 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.pre("save", function (next) {
-  if (this.isNew) this.emailVerified = false;
-
+  if (this.isNew) {
+    this.emailVerified = false;
+    this.wordsUpdatedAt = Date.now();
+  }
   next();
 });
 
@@ -111,6 +118,14 @@ userSchema.pre("save", function (next) {
     : "";
 
   this.name = `${firstName} ${lastName}`;
+
+  next();
+});
+
+userSchema.pre("save", function (next) {
+  if (!this.isModified("plan")) next();
+
+  this.wordsLeft = +process.env[`WORDS_${this.plan}`];
 
   next();
 });

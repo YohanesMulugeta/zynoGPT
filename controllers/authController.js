@@ -15,14 +15,18 @@ function filterObj(obj, ...toBeFiltered) {
   return { ...obj };
 }
 
-function signAndSend(user, statusCode, res) {
-  const token = jwt.sign(
-    { id: user._id, iat: Date.now() / 1000 + 10 },
+function signToken(id) {
+  return jwt.sign(
+    { id: id, iat: Date.now() / 1000 + 10 },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES,
     }
   );
+}
+
+function signAndSend(user, statusCode, res) {
+  const token = signToken(user._id);
 
   const cookieOpt = {
     expires: new Date(
@@ -128,11 +132,20 @@ exports.verifyEmail = catchAsync(async function (req, res, next) {
 
   await user.save({ validateBeforeSave: false });
 
+  const signInToken = signToken(user._id);
+
+  const cookieOpt = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+  };
+
+  res.cookie("jwt", signInToken, cookieOpt);
+
   // 5) SEND SUCCESS MESSAGE
-  res.status(200).json({
-    status: "success",
-    message: "You verified your email successfully",
-  });
+  res.status(200).redirect("/");
 });
 
 // ------------------------------- LOGIN
