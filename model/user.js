@@ -103,6 +103,7 @@ userSchema.pre("save", function (next) {
     this.emailVerified = false;
     this.wordsUpdatedAt = Date.now();
   }
+
   next();
 });
 
@@ -123,7 +124,7 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.pre("save", function (next) {
-  if (!this.isModified("plan")) next();
+  if (!this.isModified("plan")) return next();
 
   this.wordsLeft = +process.env[`WORDS_${this.plan}`];
 

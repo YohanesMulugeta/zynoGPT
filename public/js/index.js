@@ -1,3 +1,4 @@
+import handleSubmit from "./features/essay.js";
 import { handleLogin, handleLogout } from "./login.js";
 import handleSignup from "./signup.js";
 
@@ -10,6 +11,10 @@ const feature = document.getElementById(
   document.title.toLowerCase()?.split("|")[1]?.trim()?.split(" ")?.join("-")
 );
 
+console.log(feature);
+
 login?.addEventListener("submit", handleLogin);
 logout?.addEventListener("click", handleLogout);
 signup?.addEventListener("submit", handleSignup);
+
+feature?.addEventListener("submit", handleSubmit);

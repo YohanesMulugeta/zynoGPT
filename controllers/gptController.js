@@ -6,20 +6,25 @@ exports.checkWordsLeft = catchAsync(async function (req, res, next) {
   const { user } = req;
 
   // wordsUpdatedAt
-  if (user.wordsUpdatedAt + 30 * 24 * 60 * 60 * 1000 >= Date.now()) {
-    user.plan = "free";
 
-    await user.save({ runValidatorsBeforeSave: false });
+  if (user.wordsUpdatedAt.getTime() + 30 * 24 * 60 * 60 * 1000 <= Date.now()) {
+    user.plan = "free";
+    user.wordsLeft = process.env.WORDS_FREE;
+    user.wordsUpdatedAt = Date.now();
+
+    await user.save({ validateBeforeSave: false });
+
     return next();
   }
 
   // --------- generate unlimited for diamond users
   if (user.plan === "diamond") return next();
 
-  if (user.wordsLeft <= process.env[`WORDS_${user.plan.trim().toUpperCase()}`])
+  if (+user.wordsLeft <= 0)
     return next(
       new AppError(
-        "You have finished your words per month. Please upgrade your plan or wait for next month to get access to this  feature."
+        "You have finished your words per month. Please upgrade your plan or wait for next month to get access to this  feature.",
+        400
       )
     );
 
@@ -28,14 +33,16 @@ exports.checkWordsLeft = catchAsync(async function (req, res, next) {
 
 exports.generateText = catchAsync(async function (req, res, next) {
   const { user } = req;
+  const { prompt } = req.body;
+  const max_tokens = +user.wordsLeft > 1000 ? 1000 : user.wordsLeft;
 
-  const response = await axios.post(
+  const { data } = await axios.post(
     process.env.GPT_ENDPOINT,
     {
-      prompt: req.body.prompt,
-      max_tokens: user.wordsLeft,
+      prompt,
+      max_tokens,
       model: "text-davinci-003",
-      temperature: 0,
+      temperature: 0.5,
     },
     {
       headers: {
@@ -45,8 +52,15 @@ exports.generateText = catchAsync(async function (req, res, next) {
     }
   );
 
+  // res.end();
+  user.wordsLeft = user.wordsLeft - data.usage.completion_tokens;
+
+  console.log(user.wordsLeft - data.usage.completion_tokens);
+
+  await user.save({ validateBeforeSave: false });
+
   res.status(200).json({
     status: "success",
-    data: response.data,
+    data: data,
   });
 });
