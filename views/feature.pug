@@ -13,7 +13,7 @@ body
                 p.opacity-75= featureDescription
     section.py-6.px-2.px-lg-4.bg-white(class=`${title.toLowerCase().split(' ').join('-')}`)
         .container
-            form(action="POST")
+            form(id=`${title.toLowerCase().split(' ').join('-')}`)
                 .row
                     .col-lg-6.p-4
                         .div
