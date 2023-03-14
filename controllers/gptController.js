@@ -34,6 +34,7 @@ exports.checkWordsLeft = catchAsync(async function (req, res, next) {
 exports.generateText = catchAsync(async function (req, res, next) {
   const { user } = req;
   const { prompt } = req.body;
+
   const max_tokens = +user.wordsLeft > 1000 ? 1000 : user.wordsLeft;
 
   const { data } = await axios.post(

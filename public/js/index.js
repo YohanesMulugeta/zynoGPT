@@ -1,4 +1,4 @@
-import handleSubmit from "./features/essay.js";
+import essay from "./features/essay.js";
 import { handleLogin, handleLogout } from "./login.js";
 import handleSignup from "./signup.js";
 
@@ -17,4 +17,4 @@ login?.addEventListener("submit", handleLogin);
 logout?.addEventListener("click", handleLogout);
 signup?.addEventListener("submit", handleSignup);
 
-feature?.addEventListener("submit", handleSubmit);
+feature?.addEventListener("submit", essay.generateText.bind(essay));
