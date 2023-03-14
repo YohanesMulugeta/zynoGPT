@@ -1,5 +1,3 @@
-// const API_KEY = "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";
-// const API_ENDPOINT = "https://api.openai.com/v1/completions";
 //this function is responsible for API request with openAI backend-with endpoint of completions
 async function generateText(prompt) {
   try {
